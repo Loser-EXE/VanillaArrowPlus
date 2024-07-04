@@ -38,11 +38,17 @@ public class RedstoneArrowEntity extends AbstractArrowEntity {
         poweredAirBlockPos = blockHitResult.getBlockPos().offset(hitBlockSide);
         BlockState poweredAirBlockState = ModBlocks.POWERED_AIR.getDefaultState().with(PoweredAirBlock.FACING, hitBlockSide);
 
-        this.getWorld().setBlockState(poweredAirBlockPos, poweredAirBlockState, Block.NOTIFY_ALL);
+        Block blockToBeReplaced = getWorld().getBlockState(poweredAirBlockPos).getBlock();
+
+        if(blockToBeReplaced == Blocks.AIR || blockToBeReplaced.getDefaultState().isReplaceable()) {
+            this.getWorld().setBlockState(poweredAirBlockPos, poweredAirBlockState, Block.NOTIFY_ALL);
+        }
     }
 
     private void removePoweredAirBlock() {
-        this.getWorld().setBlockState(poweredAirBlockPos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
+        if(getWorld().getBlockState(poweredAirBlockPos).getBlock() == ModBlocks.POWERED_AIR) {
+            this.getWorld().setBlockState(poweredAirBlockPos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
+        }
     }
 
     @Override
