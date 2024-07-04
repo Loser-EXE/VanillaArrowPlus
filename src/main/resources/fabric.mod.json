@@ -1,0 +1,36 @@
+{
+    "schemaVersion": 1,
+    "id": "vanillaarrowplus",
+    "version": "${version}",
+    "name": "VanillaArrow+",
+    "description": "Adds a few new arrows and functionality to the fletching table",
+    "authors": [
+        "PowerPork",
+        "LoserEXE"
+    ],
+    "contact": {
+        "repo": "https://github.com/loserexe/PowerPorksFletchingTable"
+    },
+    "license": "LGPL-3.0",
+    "icon": "assets/powerporksfletchingtable/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "fabric-datagen": [
+            "com.loserexe.vanillaarrowplus.data.DataGenerator"
+        ],
+        "client": [
+            "com.loserexe.vanillaarrowplus.client.VanillaArrowPlusClient"
+        ],
+        "main": [
+            "com.loserexe.vanillaarrowplus.VanillaArrowPlus"
+        ]
+    },
+    "mixins": [
+        "vanillaarrowplus.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}"
+    }
+}
