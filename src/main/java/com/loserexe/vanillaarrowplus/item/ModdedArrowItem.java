@@ -1,6 +1,5 @@
 package com.loserexe.vanillaarrowplus.item;
 
-import com.loserexe.vanillaarrowplus.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ArrowItem;
@@ -9,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class ModdedArrowItem<T extends AbstractArrowEntity> extends ArrowItem {
+public class ModdedArrowItem<T extends PersistentProjectileEntity> extends ArrowItem {
     private final Class<T> arrowEntity;
 
     public ModdedArrowItem(Class<T> arrowEntity) {

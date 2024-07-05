@@ -2,9 +2,12 @@ package com.loserexe.vanillaarrowplus.entity.projectile;
 
 import com.loserexe.vanillaarrowplus.block.ModBlocks;
 import com.loserexe.vanillaarrowplus.block.PoweredAirBlock;
+import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
+import com.loserexe.vanillaarrowplus.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -15,7 +18,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class RedstoneArrowEntity extends AbstractArrowEntity {
+public class RedstoneArrowEntity extends PersistentProjectileEntity {
     private BlockPos poweredAirBlockPos;
 
     public RedstoneArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
@@ -23,7 +26,7 @@ public class RedstoneArrowEntity extends AbstractArrowEntity {
     }
 
     public RedstoneArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
-        super(world, stack, owner, shotFrom);
+        super(ModEntityTypes.REDSTONE_ARROW, owner, world, stack, shotFrom);
     }
 
     @Override
@@ -55,5 +58,10 @@ public class RedstoneArrowEntity extends AbstractArrowEntity {
     public void remove(RemovalReason reason) {
         super.remove(reason);
         removePoweredAirBlock();
+    }
+
+    @Override
+    protected ItemStack getDefaultItemStack() {
+        return new ItemStack(ModItems.REDSTONE_ARROW);
     }
 }
