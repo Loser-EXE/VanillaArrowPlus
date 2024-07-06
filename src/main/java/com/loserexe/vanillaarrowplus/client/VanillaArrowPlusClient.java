@@ -9,5 +9,6 @@ public class VanillaArrowPlusClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.register(ModEntityTypes.REDSTONE_ARROW, (VanillaArrowPlusArrowRenderer::new));
+        EntityRendererRegistry.register(ModEntityTypes.ECHO_ARROW, (VanillaArrowPlusArrowRenderer::new));
     }
 }
