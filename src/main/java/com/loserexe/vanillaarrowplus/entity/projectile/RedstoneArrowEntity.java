@@ -10,8 +10,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -49,6 +51,10 @@ public class RedstoneArrowEntity extends PersistentProjectileEntity {
     }
 
     private void removePoweredAirBlock() {
+        if(poweredAirBlockPos == null) {
+            return;
+        }
+
         if(getWorld().getBlockState(poweredAirBlockPos).getBlock() == ModBlocks.POWERED_AIR) {
             this.getWorld().setBlockState(poweredAirBlockPos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
         }
@@ -58,6 +64,15 @@ public class RedstoneArrowEntity extends PersistentProjectileEntity {
     public void remove(RemovalReason reason) {
         super.remove(reason);
         removePoweredAirBlock();
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if(this.inGroundTime % 10 == 0) {
+            this.getWorld().addParticle(new DustParticleEffect(DustParticleEffect.RED, 1), this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+        }
     }
 
     @Override
