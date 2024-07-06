@@ -12,13 +12,12 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class BlazingArrowEntity extends PersistentProjectileEntity {
-    private final ItemStack bow;
 
     public BlazingArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
         super(EntityType.ARROW, owner, world, stack,shotFrom);
-        this.bow = shotFrom;
-
     }
 
     @Override
@@ -27,7 +26,7 @@ public class BlazingArrowEntity extends PersistentProjectileEntity {
         //Bruh
         boolean bowIsEnchantedWithFlame = EnchantmentHelper.getLevel(
                 this.getWorld().getRegistryManager()
-                        .getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.FLAME), bow) != 0;
+                        .getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.FLAME), Objects.requireNonNull(this.getWeaponStack())) != 0;
 
         if(bowIsEnchantedWithFlame) {
             entityHitResult.getEntity().setOnFireForTicks(200);
