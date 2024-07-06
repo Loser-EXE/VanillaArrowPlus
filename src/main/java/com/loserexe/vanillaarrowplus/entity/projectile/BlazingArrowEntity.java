@@ -1,5 +1,6 @@
 package com.loserexe.vanillaarrowplus.entity.projectile;
 
+import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
 import com.loserexe.vanillaarrowplus.item.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -17,7 +18,11 @@ import java.util.Objects;
 public class BlazingArrowEntity extends PersistentProjectileEntity {
 
     public BlazingArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
-        super(EntityType.ARROW, owner, world, stack,shotFrom);
+        super(ModEntityTypes.BLAZING_ARROW, owner, world, stack,shotFrom);
+    }
+
+    public BlazingArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+        super(entityType, world);
     }
 
     @Override
