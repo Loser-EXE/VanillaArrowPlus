@@ -17,6 +17,7 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider{
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(ItemTags.ARROWS)
+                .add(ModItems.AERIAL_ARROW)
                 .add(ModItems.AMETHYST_ARROW)
                 .add(ModItems.BLAZING_ARROW)
                 .add(ModItems.CARROT_ARROW)
@@ -24,7 +25,9 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider{
                 .add(ModItems.GOLD_ARROW)
                 .add(ModItems.HONEY_ARROW)
                 .add(ModItems.IRON_ARROW)
+                .add(ModItems.PRISMARINE_ARROW)
                 .add(ModItems.QUARTZ_ARROW)
-                .add(ModItems.REDSTONE_ARROW);
+                .add(ModItems.REDSTONE_ARROW)
+                .add(ModItems.SLIME_ARROW);
     }
 }

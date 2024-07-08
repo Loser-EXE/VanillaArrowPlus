@@ -83,6 +83,7 @@ public class VanillaArrowPlusArrowRenderer extends ProjectileEntityRenderer<Pers
     }
 
     static {
+        arrowTextures.put(AerialArrowEntity.class, "aerial_arrow");
         arrowTextures.put(AmethystArrowEntity.class, "amethyst_arrow");
         arrowTextures.put(BlazingArrowEntity.class, "blazing_arrow");
         arrowTextures.put(CarrotArrowEntity.class, "carrot_arrow");
@@ -90,14 +91,18 @@ public class VanillaArrowPlusArrowRenderer extends ProjectileEntityRenderer<Pers
         arrowTextures.put(GoldArrowEntity.class, "gold_arrow");
         arrowTextures.put(HoneyArrowEntity.class, "honey_arrow");
         arrowTextures.put(IronArrowEntity.class, "iron_arrow");
+        arrowTextures.put(PrismarineArrowEntity.class, "prismarine_arrow");
         arrowTextures.put(QuartzArrowEntity.class, "quartz_arrow");
         arrowTextures.put(RedstoneArrowEntity.class, "redstone_arrow");
+        arrowTextures.put(SlimeArrowEntity.class, "slime_arrow");
 
+        arrowShaftLengths.put(AerialArrowEntity.class, 17);
         arrowShaftLengths.put(AmethystArrowEntity.class, 11);
         arrowShaftLengths.put(BlazingArrowEntity.class, 17);
         arrowShaftLengths.put(EchoArrowEntity.class, 19);
         arrowShaftLengths.put(IronArrowEntity.class, 15);
         arrowShaftLengths.put(QuartzArrowEntity.class, 17);
+        arrowShaftLengths.put(SlimeArrowEntity.class, 17);
 
         arrowTextures.put(SpectralArrowEntity.class, "spectral_arrow");
         arrowShaftLengths.put(SpectralArrowEntity.class, 15);

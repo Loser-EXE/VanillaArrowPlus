@@ -1,5 +1,6 @@
 {
   "effect.vanillaarrowplus.honeyed": "Honeyed",
+  "item.vanillaarrowplus.aerial_arrow": "Aerial Arrow",
   "item.vanillaarrowplus.amethyst_arrow": "Amethyst Arrow",
   "item.vanillaarrowplus.blazing_arrow": "Blazing Arrow",
   "item.vanillaarrowplus.carrot_arrow": "Carrow",
@@ -7,6 +8,8 @@
   "item.vanillaarrowplus.gold_arrow": "Gold Arrow",
   "item.vanillaarrowplus.honey_arrow": "Honey Arrow",
   "item.vanillaarrowplus.iron_arrow": "Iron Arrow",
+  "item.vanillaarrowplus.prismarine_arrow": "Prismarine Arrow",
   "item.vanillaarrowplus.quartz_arrow": "Quartz Arrow",
-  "item.vanillaarrowplus.redstone_arrow": "Redstone Arrow"
+  "item.vanillaarrowplus.redstone_arrow": "Redstone Arrow",
+  "item.vanillaarrowplus.slime_arrow": "Slime Arrow"
 }

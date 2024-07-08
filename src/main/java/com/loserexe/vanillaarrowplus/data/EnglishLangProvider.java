@@ -16,6 +16,7 @@ public class EnglishLangProvider extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
+        translationBuilder.add(ModItems.AERIAL_ARROW, "Aerial Arrow");
         translationBuilder.add(ModItems.AMETHYST_ARROW, "Amethyst Arrow");
         translationBuilder.add(ModItems.BLAZING_ARROW, "Blazing Arrow");
         translationBuilder.add(ModItems.CARROT_ARROW, "Carrow");
@@ -23,8 +24,10 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.GOLD_ARROW, "Gold Arrow");
         translationBuilder.add(ModItems.HONEY_ARROW, "Honey Arrow");
         translationBuilder.add(ModItems.IRON_ARROW, "Iron Arrow");
+        translationBuilder.add(ModItems.PRISMARINE_ARROW, "Prismarine Arrow");
         translationBuilder.add(ModItems.QUARTZ_ARROW, "Quartz Arrow");
         translationBuilder.add(ModItems.REDSTONE_ARROW, "Redstone Arrow");
+        translationBuilder.add(ModItems.SLIME_ARROW, "Slime Arrow");
 
         translationBuilder.add(ModStatusEffects.HONEYED.value(), "Honeyed");
 
