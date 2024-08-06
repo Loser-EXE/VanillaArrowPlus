@@ -9,20 +9,20 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class ModdedArrowItem<T extends PersistentProjectileEntity> extends ArrowItem {
-    private final Class<T> arrowEntity;
+    private final ModdedArrowEntityBuilder builder;
 
-    public ModdedArrowItem(Class<T> arrowEntity) {
+    public ModdedArrowItem(ModdedArrowEntityBuilder builder) {
         super(new Item.Settings());
-        this.arrowEntity = arrowEntity;
+
+        this.builder = builder;
     }
 
     @Override
     public PersistentProjectileEntity createArrow(World world, ItemStack stack, LivingEntity shooter, @Nullable ItemStack shotFrom) {
-        try {
-            return arrowEntity.getConstructor(World.class, ItemStack.class, LivingEntity.class, ItemStack.class)
-                    .newInstance(world, stack, shooter, shotFrom);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to create arrow entity!", e);
-        }
+        return builder.create(world, stack, shooter, shotFrom);
+    }
+
+    public interface ModdedArrowEntityBuilder {
+        PersistentProjectileEntity create(World world, ItemStack stack, LivingEntity shooter, ItemStack shotFrom);
     }
 }

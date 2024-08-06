@@ -10,6 +10,11 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModEntityTypes {
+    public static final EntityType<AerialArrowEntity> AERIAL_ARROW = register("aerial_arrow",
+            EntityType.Builder.create((EntityType.EntityFactory<AerialArrowEntity>) AerialArrowEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5f, 0.5f)
+                    .eyeHeight(0.13f));
+
     public static final EntityType<AmethystArrowEntity> AMETHYST_ARROW = register("amethyst_arrow",
             EntityType.Builder.create((EntityType.EntityFactory<AmethystArrowEntity>) AmethystArrowEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5f, 0.5f)
@@ -45,6 +50,11 @@ public class ModEntityTypes {
                     .dimensions(0.5f, 0.5f)
                     .eyeHeight(0.13f));
 
+    public static final EntityType<PrismarineArrowEntity> PRISMARINE_ARROW = register("prismarine_arrow",
+            EntityType.Builder.create((EntityType.EntityFactory<PrismarineArrowEntity>) PrismarineArrowEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5f, 0.5f)
+                    .eyeHeight(0.13f));
+
     public static final EntityType<QuartzArrowEntity> QUARTZ_ARROW = register("quartz_arrow",
             EntityType.Builder.create((EntityType.EntityFactory<QuartzArrowEntity>) QuartzArrowEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5f, 0.5f)
@@ -52,6 +62,11 @@ public class ModEntityTypes {
 
     public static final EntityType<RedstoneArrowEntity> REDSTONE_ARROW = register("redstone_arrow",
             EntityType.Builder.create((EntityType.EntityFactory<RedstoneArrowEntity>) RedstoneArrowEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5f, 0.5f)
+                    .eyeHeight(0.13f));
+
+    public static final EntityType<SlimeArrowEntity> SLIME_ARROW = register("slime_arrow",
+            EntityType.Builder.create((EntityType.EntityFactory<SlimeArrowEntity>) SlimeArrowEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5f, 0.5f)
                     .eyeHeight(0.13f));
 

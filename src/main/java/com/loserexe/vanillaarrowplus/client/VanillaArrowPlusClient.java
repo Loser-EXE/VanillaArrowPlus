@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityType;
 public class VanillaArrowPlusClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        EntityRendererRegistry.register(ModEntityTypes.AERIAL_ARROW, (VanillaArrowPlusArrowRenderer::new));
         EntityRendererRegistry.register(ModEntityTypes.AMETHYST_ARROW, (VanillaArrowPlusArrowRenderer::new));
         EntityRendererRegistry.register(ModEntityTypes.BLAZING_ARROW, (VanillaArrowPlusArrowRenderer::new));
         EntityRendererRegistry.register(ModEntityTypes.CARROT_ARROW, (VanillaArrowPlusArrowRenderer::new));
@@ -16,8 +17,10 @@ public class VanillaArrowPlusClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntityTypes.GOLD_ARROW, (VanillaArrowPlusArrowRenderer::new));
         EntityRendererRegistry.register(ModEntityTypes.HONEY_ARROW, (VanillaArrowPlusArrowRenderer::new));
         EntityRendererRegistry.register(ModEntityTypes.IRON_ARROW, (VanillaArrowPlusArrowRenderer::new));
+        EntityRendererRegistry.register(ModEntityTypes.PRISMARINE_ARROW, (VanillaArrowPlusArrowRenderer::new));
         EntityRendererRegistry.register(ModEntityTypes.QUARTZ_ARROW, (VanillaArrowPlusArrowRenderer::new));
         EntityRendererRegistry.register(ModEntityTypes.REDSTONE_ARROW, (VanillaArrowPlusArrowRenderer::new));
+        EntityRendererRegistry.register(ModEntityTypes.SLIME_ARROW, (VanillaArrowPlusArrowRenderer::new));
 
         EntityRendererRegistry.register(EntityType.SPECTRAL_ARROW, (VanillaArrowPlusArrowRenderer::new));
     }
