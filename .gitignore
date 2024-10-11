@@ -3,3 +3,5 @@
 build/
 run/
 /src/main/generated/.cache/
+/.project
+/.settings/org.eclipse.buildship.core.prefs
