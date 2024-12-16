@@ -5,75 +5,34 @@ import com.loserexe.vanillaarrowplus.entity.projectile.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 public class ModEntityTypes {
-    public static final EntityType<AerialArrowEntity> AERIAL_ARROW = register("aerial_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<AerialArrowEntity>) AerialArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
+    public static final EntityType<AerialArrowEntity> AERIAL_ARROW = registerProjectileEntity("aerial_arrow", AerialArrowEntity::new);
+    public static final EntityType<AmethystArrowEntity> AMETHYST_ARROW = registerProjectileEntity("amethyst_arrow", AmethystArrowEntity::new);
+    public static final EntityType<BlazingArrowEntity> BLAZING_ARROW = registerProjectileEntity("blazing_arrow", BlazingArrowEntity::new);
+    public static final EntityType<CarrotArrowEntity> CARROT_ARROW = registerProjectileEntity("carrot_arrow", CarrotArrowEntity::new);
+    public static final EntityType<EchoArrowEntity> ECHO_ARROW = registerProjectileEntity("echo_arrow", EchoArrowEntity::new);
+    public static final EntityType<GoldArrowEntity> GOLD_ARROW = registerProjectileEntity("gold_arrow", GoldArrowEntity::new);
+    public static final EntityType<HoneyArrowEntity> HONEY_ARROW = registerProjectileEntity("honey_arrow", HoneyArrowEntity::new);
+    public static final EntityType<IronArrowEntity> IRON_ARROW = registerProjectileEntity("iron_arrow", IronArrowEntity::new);
+    public static final EntityType<PrismarineArrowEntity> PRISMARINE_ARROW = registerProjectileEntity("prismarine_arrow", PrismarineArrowEntity::new);
+    public static final EntityType<QuartzArrowEntity> QUARTZ_ARROW = registerProjectileEntity("quartz_arrow", QuartzArrowEntity::new);
+    public static final EntityType<RedstoneArrowEntity> REDSTONE_ARROW = registerProjectileEntity("redstone_arrow", RedstoneArrowEntity::new);
+    public static final EntityType<SlimeArrowEntity> SLIME_ARROW = registerProjectileEntity("slime_arrow", SlimeArrowEntity::new);
 
-    public static final EntityType<AmethystArrowEntity> AMETHYST_ARROW = register("amethyst_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<AmethystArrowEntity>) AmethystArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
+    private static <T extends PersistentProjectileEntity> EntityType<T> registerProjectileEntity(String name, EntityType.EntityFactory<T> entityBuilder) {
+        EntityType.Builder<T> builder = EntityType.Builder.create(entityBuilder, SpawnGroup.MISC)
+                .dimensions(0.5f, 0.5f)
+                .eyeHeight(0.13f);
 
-    public static final EntityType<BlazingArrowEntity> BLAZING_ARROW = register("blazing_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<BlazingArrowEntity>) BlazingArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<CarrotArrowEntity> CARROT_ARROW = register("carrot_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<CarrotArrowEntity>) CarrotArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<EchoArrowEntity> ECHO_ARROW = register("echo_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<EchoArrowEntity>) EchoArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<GoldArrowEntity> GOLD_ARROW = register("gold_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<GoldArrowEntity>) GoldArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<HoneyArrowEntity> HONEY_ARROW = register("honey_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<HoneyArrowEntity>) HoneyArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<IronArrowEntity> IRON_ARROW = register("iron_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<IronArrowEntity>) IronArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<PrismarineArrowEntity> PRISMARINE_ARROW = register("prismarine_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<PrismarineArrowEntity>) PrismarineArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<QuartzArrowEntity> QUARTZ_ARROW = register("quartz_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<QuartzArrowEntity>) QuartzArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<RedstoneArrowEntity> REDSTONE_ARROW = register("redstone_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<RedstoneArrowEntity>) RedstoneArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    public static final EntityType<SlimeArrowEntity> SLIME_ARROW = register("slime_arrow",
-            EntityType.Builder.create((EntityType.EntityFactory<SlimeArrowEntity>) SlimeArrowEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f)
-                    .eyeHeight(0.13f));
-
-    private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> entity) {
         return Registry.register(Registries.ENTITY_TYPE,
                 Identifier.of(VanillaArrowPlus.MOD_ID, name),
-                entity.build());
+                builder.build());
     }
 
     public static void register() {
