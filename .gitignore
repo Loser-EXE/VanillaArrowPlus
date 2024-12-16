@@ -5,3 +5,7 @@ run/
 /src/main/generated/.cache/
 /.project
 /.settings/org.eclipse.buildship.core.prefs
+/VanillaArrowPlus_datagen.launch
+/.factorypath
+/bin/
+/.settings/
