@@ -10,22 +10,16 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CarrotArrowEntity extends PersistentProjectileEntity {
-    public CarrotArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
-        super(ModEntityTypes.CARROT_ARROW, owner, world, stack, shotFrom);
-    }
-
+public class CarrotArrowEntity extends ModdedArrowEntity {
     public CarrotArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    @Override
-    protected void onEntityHit(EntityHitResult entityHitResult) {
-        super.onEntityHit(entityHitResult);
+    public CarrotArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
+        super(type, world, stack, owner, shotFrom);
     }
 
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return new ItemStack(ModItems.CARROT_ARROW);
+    public CarrotArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
+        super(type, x, y, z, world, stack);
     }
 }

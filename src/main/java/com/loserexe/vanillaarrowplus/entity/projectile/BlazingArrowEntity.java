@@ -15,14 +15,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class BlazingArrowEntity extends PersistentProjectileEntity {
-
-    public BlazingArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
-        super(ModEntityTypes.BLAZING_ARROW, owner, world, stack,shotFrom);
-    }
-
+public class BlazingArrowEntity extends ModdedArrowEntity {
     public BlazingArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    public BlazingArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
+        super(type, world, stack, owner, shotFrom);
+    }
+
+    public BlazingArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
+        super(type, x, y, z, world, stack);
     }
 
     @Override
@@ -38,10 +41,5 @@ public class BlazingArrowEntity extends PersistentProjectileEntity {
         } else {
             entityHitResult.getEntity().setOnFireForTicks(100);
         }
-    }
-
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return new ItemStack(ModItems.BLAZING_ARROW);
     }
 }

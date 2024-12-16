@@ -10,22 +10,16 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class AmethystArrowEntity extends PersistentProjectileEntity {
-    public AmethystArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
-        super(ModEntityTypes.AMETHYST_ARROW, owner, world, stack, shotFrom);
-    }
-
+public class AmethystArrowEntity extends ModdedArrowEntity {
     public AmethystArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    @Override
-    protected void onEntityHit(EntityHitResult entityHitResult) {
-        super.onEntityHit(entityHitResult);
+    public AmethystArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
+        super(type, world, stack, owner, shotFrom);
     }
 
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return new ItemStack(ModItems.AMETHYST_ARROW);
+    public AmethystArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
+        super(type, x, y, z, world, stack);
     }
 }

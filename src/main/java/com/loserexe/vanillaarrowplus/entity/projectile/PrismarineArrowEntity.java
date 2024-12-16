@@ -7,18 +7,18 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class PrismarineArrowEntity extends PersistentProjectileEntity {
-    public PrismarineArrowEntity(World world, ItemStack stack, LivingEntity shooter, ItemStack shotFrom) {
-        super(ModEntityTypes.PRISMARINE_ARROW, shooter, world, stack, shotFrom);
-    }
-
+public class PrismarineArrowEntity extends ModdedArrowEntity {
     public PrismarineArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return ModItems.PRISMARINE_ARROW.getDefaultStack();
+    public PrismarineArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
+        super(type, world, stack, owner, shotFrom);
+    }
+
+    public PrismarineArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
+        super(type, x, y, z, world, stack);
     }
 }

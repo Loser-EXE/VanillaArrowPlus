@@ -7,18 +7,18 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class AerialArrowEntity extends PersistentProjectileEntity {
-    public AerialArrowEntity(World world, ItemStack stack, LivingEntity shooter, ItemStack shotFrom) {
-        super(ModEntityTypes.AERIAL_ARROW, shooter, world, stack, shotFrom);
-    }
-
+public class AerialArrowEntity extends ModdedArrowEntity {
     public AerialArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return ModItems.AERIAL_ARROW.getDefaultStack();
+    public AerialArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
+        super(type, world, stack, owner, shotFrom);
+    }
+
+    public AerialArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
+        super(type, x, y, z, world, stack);
     }
 }

@@ -9,22 +9,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class QuartzArrowEntity extends PersistentProjectileEntity {
-    public QuartzArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
-        super(ModEntityTypes.QUARTZ_ARROW, owner, world, stack, shotFrom);
-    }
-
+public class QuartzArrowEntity extends ModdedArrowEntity {
     public QuartzArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    public QuartzArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
+        super(type, world, stack, owner, shotFrom);
+    }
+
+    public QuartzArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
+        super(type, x, y, z, world, stack);
     }
 
     @Override
     protected float getDragInWater() {
         return 1f;
-    }
-
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return new ItemStack(ModItems.QUARTZ_ARROW);
     }
 }

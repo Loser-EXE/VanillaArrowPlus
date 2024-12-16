@@ -12,13 +12,17 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class HoneyArrowEntity extends PersistentProjectileEntity {
-    public HoneyArrowEntity(World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
-        super(ModEntityTypes.HONEY_ARROW, owner, world, stack, shotFrom);
-    }
-
+public class HoneyArrowEntity extends ModdedArrowEntity {
     public HoneyArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    public HoneyArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
+        super(type, world, stack, owner, shotFrom);
+    }
+
+    public HoneyArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
+        super(type, x, y, z, world, stack);
     }
 
     @Override
@@ -29,10 +33,5 @@ public class HoneyArrowEntity extends PersistentProjectileEntity {
             StatusEffectInstance honeyed = new StatusEffectInstance(ModStatusEffects.HONEYED, 100);
             livingEntity.addStatusEffect(honeyed);
         }
-    }
-
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return new ItemStack(ModItems.HONEY_ARROW);
     }
 }
