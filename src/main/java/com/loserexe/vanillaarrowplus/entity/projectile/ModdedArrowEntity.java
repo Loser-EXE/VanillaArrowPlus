@@ -8,25 +8,27 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class ModdedArrowEntity extends PersistentProjectileEntity {
-    private final EntityType<? extends PersistentProjectileEntity> entityType;
 
     protected ModdedArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
-        this.entityType = entityType;
     }
 
     protected ModdedArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
         super(type, x, y, z, world, stack, null);
-        entityType = type;
+        initArrow();
     }
 
     protected ModdedArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack, LivingEntity owner, @Nullable ItemStack shotFrom) {
         super(type, owner, world, stack, shotFrom);
-        entityType = type;
+        initArrow();
     }
 
     @Override
     protected ItemStack getDefaultItemStack() {
         return null;
+    }
+
+    protected void initArrow() {
+
     }
 }

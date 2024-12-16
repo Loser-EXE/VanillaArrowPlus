@@ -1,9 +1,5 @@
 package com.loserexe.vanillaarrowplus.entity.projectile;
 
-import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
-import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
-import com.loserexe.vanillaarrowplus.item.ModItems;
-import com.loserexe.vanillaarrowplus.mixin.PersistentProjectileEntityAccessor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -28,6 +24,11 @@ public class GoldArrowEntity extends ModdedArrowEntity {
     @Override
     protected double getGravity() {
         return 0.02;
+    }
+
+    @Override
+    protected void initArrow() {
+        setDamage(1.5);
     }
 
     @Override
