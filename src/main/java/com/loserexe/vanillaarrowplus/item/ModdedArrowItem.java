@@ -1,6 +1,6 @@
 package com.loserexe.vanillaarrowplus.item;
 
-import com.loserexe.vanillaarrowplus.entity.projectile.ModdedArrowEntity;
+import com.loserexe.vanillaarrowplus.entity.projectile.ModdedPersistentProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -13,13 +13,11 @@ import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class ModdedArrowItem extends ArrowItem {
     private final Class<?> entityClass;
     private final EntityType<?> entityType;
 
-    public ModdedArrowItem(Class<? extends ModdedArrowEntity> entityClass, EntityType<? extends ModdedArrowEntity> entityType) {
+    public ModdedArrowItem(Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType) {
         super(new Item.Settings());
 
         this.entityClass = entityClass;
@@ -40,7 +38,7 @@ public class ModdedArrowItem extends ArrowItem {
     @Override
     public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
         try {
-            ModdedArrowEntity arrowEntity = (ModdedArrowEntity) entityClass.getConstructor(
+            ModdedPersistentProjectileEntity arrowEntity = (ModdedPersistentProjectileEntity) entityClass.getConstructor(
                     EntityType.class, Double.class, Double.class, Double.class, World.class, ItemStack.class)
                     .newInstance(entityType, pos.getX(), pos.getY(), pos.getZ(), world, stack.copyWithCount(1));
             arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;

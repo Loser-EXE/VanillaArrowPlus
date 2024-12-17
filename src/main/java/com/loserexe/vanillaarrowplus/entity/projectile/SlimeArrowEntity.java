@@ -1,7 +1,5 @@
 package com.loserexe.vanillaarrowplus.entity.projectile;
 
-import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
-import com.loserexe.vanillaarrowplus.item.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -9,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class SlimeArrowEntity extends ModdedArrowEntity {
+public class SlimeArrowEntity extends ModdedPersistentProjectileEntity {
     public SlimeArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }

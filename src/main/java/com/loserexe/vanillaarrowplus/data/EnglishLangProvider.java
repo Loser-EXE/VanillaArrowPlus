@@ -1,5 +1,6 @@
 package com.loserexe.vanillaarrowplus.data;
 
+import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
 import com.loserexe.vanillaarrowplus.entity.effect.ModStatusEffects;
 import com.loserexe.vanillaarrowplus.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -30,6 +31,21 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SLIME_ARROW, "Slime Arrow");
 
         translationBuilder.add(ModStatusEffects.HONEYED.value(), "Honeyed");
+
+        translationBuilder.add(ModEntityTypes.AERIAL_ARROW, "Aerial Arrow");
+        translationBuilder.add(ModEntityTypes.AMETHYST_ARROW, "Amethyst Arrow");
+        translationBuilder.add(ModEntityTypes.BLAZING_ARROW, "Blazing Arrow");
+        translationBuilder.add(ModEntityTypes.CARROT_ARROW, "Carrow");
+        translationBuilder.add(ModEntityTypes.ECHO_ARROW, "Echo Arrow");
+        translationBuilder.add(ModEntityTypes.GOLD_ARROW, "Gold Arrow");
+        translationBuilder.add(ModEntityTypes.HONEY_ARROW, "Honey Arrow");
+        translationBuilder.add(ModEntityTypes.IRON_ARROW, "Iron Arrow");
+        translationBuilder.add(ModEntityTypes.PRISMARINE_ARROW, "Prismarine Arrow");
+        translationBuilder.add(ModEntityTypes.QUARTZ_ARROW, "Quartz Arrow");
+        translationBuilder.add(ModEntityTypes.REDSTONE_ARROW, "Redstone Arrow");
+        translationBuilder.add(ModEntityTypes.SLIME_ARROW, "Slime Arrow");
+
+        translationBuilder.add(ModEntityTypes.AMETHYST_SHARD, "Amethyst Shard");
 
         try {
             Path existingFilePath = dataOutput.getModContainer().findPath("assets/vanillaarrowplus/lang/en_us.existing.json").get();

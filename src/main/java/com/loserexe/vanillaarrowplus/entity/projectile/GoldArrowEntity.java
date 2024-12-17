@@ -8,7 +8,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class GoldArrowEntity extends ModdedArrowEntity {
+public class GoldArrowEntity extends ModdedPersistentProjectileEntity {
     public GoldArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -27,7 +27,7 @@ public class GoldArrowEntity extends ModdedArrowEntity {
     }
 
     @Override
-    protected void initArrow() {
+    protected void initProjectile() {
         setDamage(1.5);
     }
 

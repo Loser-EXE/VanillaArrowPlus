@@ -2,8 +2,6 @@ package com.loserexe.vanillaarrowplus.entity.projectile;
 
 import com.loserexe.vanillaarrowplus.block.ModBlocks;
 import com.loserexe.vanillaarrowplus.block.PoweredAirBlock;
-import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
-import com.loserexe.vanillaarrowplus.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -18,7 +16,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class RedstoneArrowEntity extends ModdedArrowEntity {
+public class RedstoneArrowEntity extends ModdedPersistentProjectileEntity {
     private BlockPos poweredAirBlockPos;
 
     public RedstoneArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {

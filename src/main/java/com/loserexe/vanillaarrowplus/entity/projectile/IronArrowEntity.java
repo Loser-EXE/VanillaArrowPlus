@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class IronArrowEntity extends ModdedArrowEntity {
+public class IronArrowEntity extends ModdedPersistentProjectileEntity {
     public IronArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -26,7 +26,7 @@ public class IronArrowEntity extends ModdedArrowEntity {
     }
 
     @Override
-    protected void initArrow() {
+    protected void initProjectile() {
         setDamage(3);
     }
 }

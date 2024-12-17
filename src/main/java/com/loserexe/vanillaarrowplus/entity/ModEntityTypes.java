@@ -5,11 +5,10 @@ import com.loserexe.vanillaarrowplus.entity.projectile.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 
 public class ModEntityTypes {
     public static final EntityType<AerialArrowEntity> AERIAL_ARROW = registerProjectileEntity("aerial_arrow", AerialArrowEntity::new);
@@ -25,10 +24,22 @@ public class ModEntityTypes {
     public static final EntityType<RedstoneArrowEntity> REDSTONE_ARROW = registerProjectileEntity("redstone_arrow", RedstoneArrowEntity::new);
     public static final EntityType<SlimeArrowEntity> SLIME_ARROW = registerProjectileEntity("slime_arrow", SlimeArrowEntity::new);
 
-    private static <T extends PersistentProjectileEntity> EntityType<T> registerProjectileEntity(String name, EntityType.EntityFactory<T> entityBuilder) {
+    public static final EntityType<AmethystShardEntity> AMETHYST_SHARD = registerEntity("amethyst_shard", AmethystShardEntity::new, 0.25f, 0.1f);
+
+    private static <T extends ProjectileEntity> EntityType<T> registerProjectileEntity(String name, EntityType.EntityFactory<T> entityBuilder) {
         EntityType.Builder<T> builder = EntityType.Builder.create(entityBuilder, SpawnGroup.MISC)
                 .dimensions(0.5f, 0.5f)
                 .eyeHeight(0.13f);
+
+        return Registry.register(Registries.ENTITY_TYPE,
+                Identifier.of(VanillaArrowPlus.MOD_ID, name),
+                builder.build());
+    }
+
+    private static <T extends Entity> EntityType<T> registerEntity(String name, EntityType.EntityFactory<T> entityBuilder, float size, float eyeHeight) {
+        EntityType.Builder<T> builder = EntityType.Builder.create(entityBuilder, SpawnGroup.MISC)
+                .dimensions(size, size)
+                .eyeHeight(eyeHeight);
 
         return Registry.register(Registries.ENTITY_TYPE,
                 Identifier.of(VanillaArrowPlus.MOD_ID, name),

@@ -17,11 +17,11 @@ import net.minecraft.util.math.RotationAxis;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VanillaArrowPlusArrowRenderer extends ProjectileEntityRenderer<PersistentProjectileEntity> {
+public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProjectileEntity> {
     private static final Map<Class<? extends PersistentProjectileEntity>, String> arrowTextures = new HashMap<>();
     private static final Map<Class<? extends PersistentProjectileEntity>, Integer> arrowShaftLengths = new HashMap<>();
 
-    public VanillaArrowPlusArrowRenderer(EntityRendererFactory.Context context) {
+    public ModdedArrowRenderer(EntityRendererFactory.Context context) {
         super(context);
     }
 

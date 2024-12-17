@@ -1,7 +1,5 @@
 package com.loserexe.vanillaarrowplus.entity.projectile;
 
-import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
-import com.loserexe.vanillaarrowplus.item.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -15,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class BlazingArrowEntity extends ModdedArrowEntity {
+public class BlazingArrowEntity extends ModdedPersistentProjectileEntity {
     public BlazingArrowEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
