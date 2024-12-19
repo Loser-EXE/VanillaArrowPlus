@@ -1,7 +1,6 @@
 package com.loserexe.vanillaarrowplus.client.render.entity;
 
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
-import com.loserexe.vanillaarrowplus.client.render.entity.state.AmethystShardEntityRenderState;
 import com.loserexe.vanillaarrowplus.client.render.entity.state.ModdedArrowEntityState;
 import com.loserexe.vanillaarrowplus.entity.projectile.*;
 import net.minecraft.client.render.OverlayTexture;
@@ -12,11 +11,9 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.ProjectileEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.SpectralArrowEntity;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 
 import java.util.HashMap;
