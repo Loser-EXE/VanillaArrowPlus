@@ -19,7 +19,6 @@ public class VanillaArrowPlusClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntityTypes.HONEY_ARROW, ModdedArrowRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.IRON_ARROW, ModdedArrowRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.PRISMARINE_ARROW, ModdedArrowRenderer::new);
-        EntityRendererRegistry.register(ModEntityTypes.QUARTZ_ARROW, ModdedArrowRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.REDSTONE_ARROW, ModdedArrowRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.SLIME_ARROW, ModdedArrowRenderer::new);
         EntityRendererRegistry.register(EntityType.SPECTRAL_ARROW, ModdedArrowRenderer::new);

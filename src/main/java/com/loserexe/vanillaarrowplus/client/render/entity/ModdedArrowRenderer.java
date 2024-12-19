@@ -116,7 +116,6 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         arrowTextures.put(HoneyArrowEntity.class, "honey_arrow");
         arrowTextures.put(IronArrowEntity.class, "iron_arrow");
         arrowTextures.put(PrismarineArrowEntity.class, "prismarine_arrow");
-        arrowTextures.put(QuartzArrowEntity.class, "quartz_arrow");
         arrowTextures.put(RedstoneArrowEntity.class, "redstone_arrow");
         arrowTextures.put(SlimeArrowEntity.class, "slime_arrow");
 
@@ -125,7 +124,6 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         arrowShaftLengths.put(BlazingArrowEntity.class, 17);
         arrowShaftLengths.put(EchoArrowEntity.class, 19);
         arrowShaftLengths.put(IronArrowEntity.class, 15);
-        arrowShaftLengths.put(QuartzArrowEntity.class, 17);
         arrowShaftLengths.put(SlimeArrowEntity.class, 17);
 
         arrowTextures.put(SpectralArrowEntity.class, "spectral_arrow");

@@ -26,7 +26,6 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.HONEY_ARROW, "Honey Arrow");
         translationBuilder.add(ModItems.IRON_ARROW, "Iron Arrow");
         translationBuilder.add(ModItems.PRISMARINE_ARROW, "Prismarine Arrow");
-        translationBuilder.add(ModItems.QUARTZ_ARROW, "Quartz Arrow");
         translationBuilder.add(ModItems.REDSTONE_ARROW, "Redstone Arrow");
         translationBuilder.add(ModItems.SLIME_ARROW, "Slime Arrow");
 
@@ -41,7 +40,6 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModEntityTypes.HONEY_ARROW, "Honey Arrow");
         translationBuilder.add(ModEntityTypes.IRON_ARROW, "Iron Arrow");
         translationBuilder.add(ModEntityTypes.PRISMARINE_ARROW, "Prismarine Arrow");
-        translationBuilder.add(ModEntityTypes.QUARTZ_ARROW, "Quartz Arrow");
         translationBuilder.add(ModEntityTypes.REDSTONE_ARROW, "Redstone Arrow");
         translationBuilder.add(ModEntityTypes.SLIME_ARROW, "Slime Arrow");
 

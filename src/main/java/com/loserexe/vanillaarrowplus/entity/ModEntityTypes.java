@@ -22,7 +22,6 @@ public class ModEntityTypes {
     public static final EntityType<HoneyArrowEntity> HONEY_ARROW = registerProjectileEntity("honey_arrow", HoneyArrowEntity::new);
     public static final EntityType<IronArrowEntity> IRON_ARROW = registerProjectileEntity("iron_arrow", IronArrowEntity::new);
     public static final EntityType<PrismarineArrowEntity> PRISMARINE_ARROW = registerProjectileEntity("prismarine_arrow", PrismarineArrowEntity::new);
-    public static final EntityType<QuartzArrowEntity> QUARTZ_ARROW = registerProjectileEntity("quartz_arrow", QuartzArrowEntity::new);
     public static final EntityType<RedstoneArrowEntity> REDSTONE_ARROW = registerProjectileEntity("redstone_arrow", RedstoneArrowEntity::new);
     public static final EntityType<SlimeArrowEntity> SLIME_ARROW = registerProjectileEntity("slime_arrow", SlimeArrowEntity::new);
 

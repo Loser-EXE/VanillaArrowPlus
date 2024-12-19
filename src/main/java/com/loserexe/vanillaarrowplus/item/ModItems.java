@@ -30,7 +30,6 @@ public class ModItems {
     public static final Item HONEY_ARROW = register("honey_arrow", ModdedArrowItem::new, HoneyArrowEntity.class, ModEntityTypes.HONEY_ARROW);
     public static final Item IRON_ARROW = register("iron_arrow", ModdedArrowItem::new, IronArrowEntity.class, ModEntityTypes.IRON_ARROW);
     public static final Item PRISMARINE_ARROW = register("prismarine_arrow", ModdedArrowItem::new, PrismarineArrowEntity.class, ModEntityTypes.PRISMARINE_ARROW);
-    public static final Item QUARTZ_ARROW = register("quartz_arrow", ModdedArrowItem::new, QuartzArrowEntity.class, ModEntityTypes.QUARTZ_ARROW);
     public static final Item REDSTONE_ARROW = register("redstone_arrow", ModdedArrowItem::new, RedstoneArrowEntity.class, ModEntityTypes.REDSTONE_ARROW);
     public static final Item SLIME_ARROW = register("slime_arrow", ModdedArrowItem::new, SlimeArrowEntity.class, ModEntityTypes.SLIME_ARROW);
 

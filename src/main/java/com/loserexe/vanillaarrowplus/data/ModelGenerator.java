@@ -31,7 +31,6 @@ public class ModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.HONEY_ARROW, Models.GENERATED);
         itemModelGenerator.register(ModItems.IRON_ARROW, Models.GENERATED);
         itemModelGenerator.register(ModItems.PRISMARINE_ARROW, Models.GENERATED);
-        itemModelGenerator.register(ModItems.QUARTZ_ARROW, Models.GENERATED);
         itemModelGenerator.register(ModItems.REDSTONE_ARROW, Models.GENERATED);
         itemModelGenerator.register(ModItems.SLIME_ARROW, Models.GENERATED);
     }

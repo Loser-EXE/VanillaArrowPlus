@@ -26,7 +26,6 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider{
                 .add(ModItems.HONEY_ARROW)
                 .add(ModItems.IRON_ARROW)
                 .add(ModItems.PRISMARINE_ARROW)
-                .add(ModItems.QUARTZ_ARROW)
                 .add(ModItems.REDSTONE_ARROW)
                 .add(ModItems.SLIME_ARROW);
     }

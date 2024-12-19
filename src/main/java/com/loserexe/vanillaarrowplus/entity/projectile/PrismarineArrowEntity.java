@@ -19,4 +19,9 @@ public class PrismarineArrowEntity extends ModdedPersistentProjectileEntity {
     public PrismarineArrowEntity(EntityType<? extends PersistentProjectileEntity> type, Double x, Double y, Double z, World world, ItemStack stack) {
         super(type, x, y, z, world, stack);
     }
+
+    @Override
+    protected float getDragInWater() {
+        return 1f;
+    }
 }
