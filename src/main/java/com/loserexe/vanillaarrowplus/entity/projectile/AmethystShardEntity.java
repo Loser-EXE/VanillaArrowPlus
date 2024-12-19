@@ -13,6 +13,7 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
@@ -55,8 +56,14 @@ public class AmethystShardEntity extends ThrownEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
+        World world = entityHitResult.getEntity().getWorld();
+
+        if (world.isClient) {
+            return;
+        }
+
         Entity victim = entityHitResult.getEntity();
-        victim.damage(this.getDamageSources().generic(), 2);
+        victim.damage((ServerWorld) world, this.getDamageSources().generic(), 2);
     }
 
     @Override

@@ -17,8 +17,8 @@ public class ModdedArrowItem extends ArrowItem {
     private final Class<?> entityClass;
     private final EntityType<?> entityType;
 
-    public ModdedArrowItem(Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType) {
-        super(new Item.Settings());
+    public ModdedArrowItem(Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType, Item.Settings settings) {
+        super(settings);
 
         this.entityClass = entityClass;
         this.entityType = entityType;

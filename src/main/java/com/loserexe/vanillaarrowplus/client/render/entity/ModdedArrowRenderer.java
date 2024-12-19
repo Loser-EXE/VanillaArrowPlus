@@ -1,7 +1,10 @@
 package com.loserexe.vanillaarrowplus.client.render.entity;
 
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
+import com.loserexe.vanillaarrowplus.client.render.entity.state.AmethystShardEntityRenderState;
+import com.loserexe.vanillaarrowplus.client.render.entity.state.ModdedArrowEntityState;
 import com.loserexe.vanillaarrowplus.entity.projectile.*;
+import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -9,7 +12,9 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.ProjectileEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.SpectralArrowEntity;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
@@ -17,7 +22,7 @@ import net.minecraft.util.math.RotationAxis;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProjectileEntity> {
+public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProjectileEntity, ModdedArrowEntityState> {
     private static final Map<Class<? extends PersistentProjectileEntity>, String> arrowTextures = new HashMap<>();
     private static final Map<Class<? extends PersistentProjectileEntity>, Integer> arrowShaftLengths = new HashMap<>();
 
@@ -26,8 +31,29 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
     }
 
     @Override
-    public void render(PersistentProjectileEntity persistentProjectileEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        int shaftLength = arrowShaftLengths.getOrDefault(persistentProjectileEntity.getClass(), 16);
+    public ModdedArrowEntityState createRenderState() {
+        return new ModdedArrowEntityState();
+    }
+
+    @Override
+    public void updateRenderState(PersistentProjectileEntity entity, ModdedArrowEntityState state, float f) {
+        super.updateRenderState(entity, state, f);
+        state.entityClass = entity.getClass();
+        state.yaw = entity.getLerpedYaw(f);
+        state.pitch = entity.getLerpedPitch(f);
+        state.shake = entity.shake;
+        //System.out.println(f);
+
+    }
+
+    @Override
+    protected Identifier getTexture(ModdedArrowEntityState state) {
+        return Identifier.of(VanillaArrowPlus.MOD_ID, "textures/entity/projectiles/" + arrowTextures.get(state.entityClass) + ".png");
+    }
+
+    @Override
+    public void render(ModdedArrowEntityState state, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        int shaftLength = arrowShaftLengths.getOrDefault(state.getClass(), 16);
 
         float shaftEndUV = shaftLength/32f;
 
@@ -36,21 +62,20 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         backX = -backX;
 
         matrixStack.push();
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(state.yaw - 90.0F));
+        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(state.pitch));
 
-        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, persistentProjectileEntity.prevYaw, persistentProjectileEntity.getYaw()) - 90.0f));
-        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, persistentProjectileEntity.prevPitch, persistentProjectileEntity.getPitch())));
-
-        float s = (float) persistentProjectileEntity.shake - g;
-        if (s > 0.0f) {
-            float t = -MathHelper.sin(s * 3.0f) * s;
-            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(t));
-        }
+//        float s = (float) state.shake;
+//        if (s > 0.0f) {
+//            float t = -MathHelper.sin(s * 3.0f) * s;
+//            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(t));
+//        }
 
         matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(45.0f));
         matrixStack.scale(0.05625f, 0.05625f, 0.05625f);
         matrixStack.translate(-4.0f, 0.0f, 0.0f);
 
-        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntityCutout(this.getTexture(persistentProjectileEntity)));
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntityCutout(this.getTexture(state)));
         MatrixStack.Entry entry = matrixStack.peek();
 
         int feather = backX--;
@@ -77,9 +102,8 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         matrixStack.pop();
     }
 
-    @Override
-    public Identifier getTexture(PersistentProjectileEntity entity) {
-        return Identifier.of(VanillaArrowPlus.MOD_ID, "textures/entity/projectiles/" + arrowTextures.get(entity.getClass()) + ".png");
+    private void vertex(MatrixStack.Entry matrix, VertexConsumer vertexConsumer, int x, int y, int z, float u, float v, int normalX, int normalZ, int normalY, int light) {
+        vertexConsumer.vertex(matrix, (float)x, (float)y, (float)z).color(Colors.WHITE).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(matrix, normalX, normalY, normalZ);
     }
 
     static {

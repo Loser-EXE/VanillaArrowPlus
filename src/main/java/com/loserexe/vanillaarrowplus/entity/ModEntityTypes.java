@@ -8,6 +8,8 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class ModEntityTypes {
@@ -33,7 +35,7 @@ public class ModEntityTypes {
 
         return Registry.register(Registries.ENTITY_TYPE,
                 Identifier.of(VanillaArrowPlus.MOD_ID, name),
-                builder.build());
+                builder.build(keyOf(name)));
     }
 
     private static <T extends Entity> EntityType<T> registerEntity(String name, EntityType.EntityFactory<T> entityBuilder, float size, float eyeHeight) {
@@ -43,7 +45,11 @@ public class ModEntityTypes {
 
         return Registry.register(Registries.ENTITY_TYPE,
                 Identifier.of(VanillaArrowPlus.MOD_ID, name),
-                builder.build());
+                builder.build(keyOf(name)));
+    }
+
+    private static RegistryKey<EntityType<?>> keyOf(String id) {
+        return RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(VanillaArrowPlus.MOD_ID, id));
     }
 
     public static void register() {
