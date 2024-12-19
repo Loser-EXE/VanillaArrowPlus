@@ -79,7 +79,6 @@ public class AmethystShardEntity extends ThrownEntity {
         return this.dataTracker.get(VARIANT);
     }
 
-
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
