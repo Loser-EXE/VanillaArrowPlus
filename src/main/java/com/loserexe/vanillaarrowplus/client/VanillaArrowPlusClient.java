@@ -3,8 +3,11 @@ package com.loserexe.vanillaarrowplus.client;
 import com.loserexe.vanillaarrowplus.client.render.entity.AmethystShardRenderer;
 import com.loserexe.vanillaarrowplus.client.render.entity.ModdedArrowRenderer;
 import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
+import com.loserexe.vanillaarrowplus.screen.FletchingTableScreen;
+import com.loserexe.vanillaarrowplus.screen.ModScreens;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.entity.EntityType;
 
 public class VanillaArrowPlusClient implements ClientModInitializer {
@@ -24,5 +27,7 @@ public class VanillaArrowPlusClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityType.SPECTRAL_ARROW, ModdedArrowRenderer::new);
 
         EntityRendererRegistry.register(ModEntityTypes.AMETHYST_SHARD, AmethystShardRenderer::new);
+
+        HandledScreens.register(ModScreens.FLETCHING_TABLE, FletchingTableScreen::new);
     }
 }
