@@ -6,4 +6,5 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 
 public class ModdedArrowEntityState extends ProjectileEntityRenderState {
     public Class<? extends PersistentProjectileEntity> entityClass;
+    public float delta;
 }

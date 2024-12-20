@@ -14,6 +14,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.SpectralArrowEntity;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         state.yaw = entity.getLerpedYaw(f);
         state.pitch = entity.getLerpedPitch(f);
         state.shake = entity.shake;
-        //System.out.println(f);
+        state.delta = f;
 
     }
 
@@ -62,11 +63,11 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(state.yaw - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(state.pitch));
 
-//        float s = (float) state.shake;
-//        if (s > 0.0f) {
-//            float t = -MathHelper.sin(s * 3.0f) * s;
-//            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(t));
-//        }
+        float s = (float) state.shake - state.delta;
+        if (s > 0.0f) {
+            float t = -MathHelper.sin(s * 3.0f) * s;
+            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(t));
+        }
 
         matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(45.0f));
         matrixStack.scale(0.05625f, 0.05625f, 0.05625f);
