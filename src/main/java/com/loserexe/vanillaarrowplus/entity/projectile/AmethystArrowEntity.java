@@ -29,7 +29,7 @@ public class AmethystArrowEntity extends ModdedPersistentProjectileEntity {
     @Override
     protected void initProjectile() {
         super.initProjectile();
-        setDamage(1.5);
+        setDamage(1.25);
     }
 
     @Override
