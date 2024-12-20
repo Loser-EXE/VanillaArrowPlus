@@ -4,7 +4,7 @@ import com.loserexe.vanillaarrowplus.client.render.entity.AmethystShardRenderer;
 import com.loserexe.vanillaarrowplus.client.render.entity.ModdedArrowRenderer;
 import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
 import com.loserexe.vanillaarrowplus.screen.FletchingTableScreen;
-import com.loserexe.vanillaarrowplus.screen.ModScreens;
+import com.loserexe.vanillaarrowplus.screen.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
@@ -25,9 +25,8 @@ public class VanillaArrowPlusClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntityTypes.REDSTONE_ARROW, ModdedArrowRenderer::new);
         EntityRendererRegistry.register(ModEntityTypes.SLIME_ARROW, ModdedArrowRenderer::new);
         EntityRendererRegistry.register(EntityType.SPECTRAL_ARROW, ModdedArrowRenderer::new);
-
         EntityRendererRegistry.register(ModEntityTypes.AMETHYST_SHARD, AmethystShardRenderer::new);
 
-        HandledScreens.register(ModScreens.FLETCHING_TABLE, FletchingTableScreen::new);
+        HandledScreens.register(ModScreenHandlers.FLETCHING_TABLE, FletchingTableScreen::new);
     }
 }

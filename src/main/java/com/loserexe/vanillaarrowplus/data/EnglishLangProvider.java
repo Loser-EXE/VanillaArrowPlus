@@ -45,6 +45,8 @@ public class EnglishLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add(ModEntityTypes.AMETHYST_SHARD, "Amethyst Shard");
 
+        translationBuilder.add("container.fletching_table", "Fletching Table");
+
         try {
             Path existingFilePath = dataOutput.getModContainer().findPath("assets/vanillaarrowplus/lang/en_us.existing.json").get();
             translationBuilder.add(existingFilePath);

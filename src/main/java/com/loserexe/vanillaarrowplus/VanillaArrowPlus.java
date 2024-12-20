@@ -1,10 +1,11 @@
 package com.loserexe.vanillaarrowplus;
 
 import com.loserexe.vanillaarrowplus.block.ModBlocks;
+import com.loserexe.vanillaarrowplus.block.entity.ModBlockEntityTypes;
 import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
 import com.loserexe.vanillaarrowplus.entity.effect.ModStatusEffects;
 import com.loserexe.vanillaarrowplus.item.ModItems;
-import com.loserexe.vanillaarrowplus.screen.ModScreens;
+import com.loserexe.vanillaarrowplus.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ public class VanillaArrowPlus implements ModInitializer {
         ModItems.register();
         ModBlocks.register();
         ModStatusEffects.register();
-        ModScreens.register();
+        ModBlockEntityTypes.register();
+        ModScreenHandlers.register();
     }
 }

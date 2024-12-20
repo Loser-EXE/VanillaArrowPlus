@@ -4,9 +4,9 @@
   "package": "com.loserexe.vanillaarrowplus.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlocksMixin",
     "LivingEntityMixin",
-    "PersistentProjectileEntityAccessor",
-    "FletchingTableBlockMixin"
+    "PersistentProjectileEntityAccessor"
   ],
   "client": [
     "EntityRenderersMixin"
