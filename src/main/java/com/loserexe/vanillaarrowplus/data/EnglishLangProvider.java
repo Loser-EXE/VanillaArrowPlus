@@ -21,6 +21,8 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.AMETHYST_ARROW, "Amethyst Arrow");
         translationBuilder.add(ModItems.BLAZING_ARROW, "Blazing Arrow");
         translationBuilder.add(ModItems.CARROT_ARROW, "Carrow");
+        translationBuilder.add(ModItems.COPPER_ARROW, "Copper Arrow");
+        translationBuilder.add(ModItems.CHARGED_COPPER_ARROW, "Charged Copper Arrow");
         translationBuilder.add(ModItems.ECHO_ARROW, "Echo Arrow");
         translationBuilder.add(ModItems.GOLD_ARROW, "Gold Arrow");
         translationBuilder.add(ModItems.HONEY_ARROW, "Honey Arrow");

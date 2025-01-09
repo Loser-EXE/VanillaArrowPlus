@@ -109,6 +109,8 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         arrowTextures.put(AmethystArrowEntity.class, "amethyst_arrow");
         arrowTextures.put(BlazingArrowEntity.class, "blazing_arrow");
         arrowTextures.put(CarrotArrowEntity.class, "carrot_arrow");
+        arrowTextures.put(CopperArrowEntity.class, "copper_arrow");
+        arrowTextures.put(ChargedCopperArrowEntity.class, "charged_copper_arrow");
         arrowTextures.put(EchoArrowEntity.class, "echo_arrow");
         arrowTextures.put(GoldArrowEntity.class, "gold_arrow");
         arrowTextures.put(HoneyArrowEntity.class, "honey_arrow");

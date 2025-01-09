@@ -25,6 +25,8 @@ public class ModItems {
     public static final Item AMETHYST_ARROW = register("amethyst_arrow", ModdedArrowItem::new, AmethystArrowEntity.class, ModEntityTypes.AMETHYST_ARROW);
     public static final Item BLAZING_ARROW = register("blazing_arrow", ModdedArrowItem::new, BlazingArrowEntity.class, ModEntityTypes.BLAZING_ARROW);
     public static final Item CARROT_ARROW = register("carrot_arrow", ModdedArrowItem::new, CarrotArrowEntity.class, ModEntityTypes.CARROT_ARROW);
+    public static final Item COPPER_ARROW = register("copper_arrow", ModdedArrowItem::new, CopperArrowEntity.class, ModEntityTypes.COPPER_ARROW);
+    public static final Item CHARGED_COPPER_ARROW = register("charged_copper_arrow", ModdedArrowItem::new, ChargedCopperArrowEntity.class, ModEntityTypes.CHARGED_COPPER_ARROW);
     public static final Item ECHO_ARROW = register("echo_arrow", ModdedArrowItem::new, EchoArrowEntity.class, ModEntityTypes.ECHO_ARROW);
     public static final Item GOLD_ARROW = register("gold_arrow", ModdedArrowItem::new, GoldArrowEntity.class, ModEntityTypes.GOLD_ARROW);
     public static final Item HONEY_ARROW = register("honey_arrow", ModdedArrowItem::new, HoneyArrowEntity.class, ModEntityTypes.HONEY_ARROW);

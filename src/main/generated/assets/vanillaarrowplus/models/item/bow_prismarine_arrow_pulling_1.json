@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow",
+  "textures": {
+    "layer0": "vanillaarrowplus:item/bow_prismarine_arrow_pulling_1"
+  }
+}

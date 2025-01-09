@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/crossbow",
+  "textures": {
+    "layer0": "vanillaarrowplus:item/crossbow_gold_arrow"
+  }
+}

@@ -1,17 +1,18 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "com.loserexe.vanillaarrowplus.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "BlocksMixin",
-    "LivingEntityMixin",
-    "PersistentProjectileEntityAccessor"
-  ],
-  "client": [
-    "EntityRenderersMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.loserexe.vanillaarrowplus.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "BlocksMixin",
+        "BowItemMixin",
+        "LivingEntityMixin",
+        "PersistentProjectileEntityAccessor"
+    ],
+    "client": [
+        "EntityRenderersMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
   }
 }

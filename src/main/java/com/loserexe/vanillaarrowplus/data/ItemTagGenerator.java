@@ -21,6 +21,8 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider{
                 .add(ModItems.AMETHYST_ARROW)
                 .add(ModItems.BLAZING_ARROW)
                 .add(ModItems.CARROT_ARROW)
+                .add(ModItems.COPPER_ARROW)
+                .add(ModItems.CHARGED_COPPER_ARROW)
                 .add(ModItems.ECHO_ARROW)
                 .add(ModItems.GOLD_ARROW)
                 .add(ModItems.HONEY_ARROW)
