@@ -7,9 +7,8 @@ This mod aims to finally give The Fletching Table a much needed functionality, b
 
 * The Fletching Table now has a functional user interface, allowing you to craft the already existing arrows in Minecraft, alongside the new arrows added in this mod.
 
-<p align="center">
-<img src="https://i.imgur.com/xM0Z6Yo.gif" width="264" /><img src="https://i.imgur.com/VygCq3E.gif" width="264" />
-</p>
+
+<img src="https://i.imgur.com/2pWWfD3.gif" width="264" /><img src="https://i.imgur.com/VygCq3E.gif" width="264" />
 
 * Crafting arrows with the fletching table yields twice as much arrow than crafting it in the crafting table, much like the stonecutter.
 * All the new added arrows use materials from the base game, ranging from your basic materials like gold and iron, to much more rarer items such a echo shards and breeze rods.
