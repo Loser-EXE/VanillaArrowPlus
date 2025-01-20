@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/crossbow",
+  "textures": {
+    "layer0": "vanillaarrowplus:item/crossbow_tipped_arrow_head",
+    "layer1": "vanillaarrowplus:item/crossbow_tipped_arrow_base"
+  }
+}
