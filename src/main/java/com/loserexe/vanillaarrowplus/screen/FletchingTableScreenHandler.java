@@ -73,6 +73,32 @@ public class FletchingTableScreenHandler extends ScreenHandler {
         propertyDelegate.set(1, FletchingTableRecipeRegistry.getCraftingMethod(inventory).getValue());
     }
 
+    public void updateSlotsState() {
+        FletchingTableRecipeRegistry.CraftingMethod attemptedCraftingMethod = this.getAttemptedCraftingMethod();
+
+        boolean isCraftingSlotsEnabled = true;
+        boolean isTippingSlotsEnabled = true;
+
+        if (attemptedCraftingMethod == FletchingTableRecipeRegistry.CraftingMethod.CRAFTING) {
+            isTippingSlotsEnabled = false;
+        } else if (attemptedCraftingMethod == FletchingTableRecipeRegistry.CraftingMethod.TIPPING) {
+            isCraftingSlotsEnabled = false;
+        }
+
+        for (int slotIndex : TIPPING_SLOTS) {
+            Slot slot = this.getSlot(slotIndex);
+            if (slot instanceof FletchingTableScreenHandler.ToggleableSlot toggleableSlot) {
+                toggleableSlot.setEnabled(isTippingSlotsEnabled);
+            }
+        }
+        for (int slotIndex : CRAFTING_SLOTS) {
+            Slot slot = this.getSlot(slotIndex);
+            if (slot instanceof FletchingTableScreenHandler.ToggleableSlot toggleableSlot) {
+                toggleableSlot.setEnabled(isCraftingSlotsEnabled);
+            }
+        }
+    }
+
     private void contentChange(FletchingTableBlockEntity blockEntity) {
         FletchingTableRecipeRegistry.CraftingMethod craftingMethod = FletchingTableRecipeRegistry.getCraftingMethod(blockEntity);
 
@@ -91,6 +117,8 @@ public class FletchingTableScreenHandler extends ScreenHandler {
                 serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(this.syncId, this.nextRevision(), TIPPING_MATERIAL_SLOT_INDEX, inventory.getStack(TIPPING_MATERIAL_SLOT_INDEX)));
             }
         }
+
+        this.updateSlotsState();
     }
 
     public FletchingTableRecipeRegistry.CraftingMethod getCraftingMethod() {
@@ -130,40 +158,53 @@ public class FletchingTableScreenHandler extends ScreenHandler {
         return propertyDelegate.get(0);
     }
 
+    private boolean checkCraftingSlots(ItemStack slotStack, ItemStack itemStack) {
+        if (FletchingTableRecipeRegistry.isValidFeather(itemStack)) {
+            return this.insertItem(slotStack, 0, 1, false);
+        } else if (FletchingTableRecipeRegistry.isValidShaft(itemStack)) {
+            return this.insertItem(slotStack, 1, 2, false);
+        } else if (FletchingTableRecipeRegistry.isValidTip(itemStack)) {
+            return this.insertItem(slotStack, 2, 3, false);
+        } else if (FletchingTableRecipeRegistry.isValidUpgrade(itemStack)) {
+            return this.insertItem(slotStack, 3, 4, false);
+        }
+        return false;
+    }
+
+    private boolean checkTippingSlot(ItemStack slotStack, ItemStack itemStack) {
+        if (itemStack.isOf(Items.ARROW)) {
+            return this.insertItem(slotStack, 4, 5, false);
+        }
+        return false;
+    }
+
     @Override
     public ItemStack quickMove(PlayerEntity player, int slotIndex) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot targetSlot = this.getSlot(slotIndex);
-        if (targetSlot != null && targetSlot.hasStack()) {
+        FletchingTableRecipeRegistry.CraftingMethod attemptedCraftingMethod = this.getAttemptedCraftingMethod();
+        if (targetSlot.hasStack()) {
             ItemStack slotStack = targetSlot.getStack();
             itemStack = slotStack.copy();
             if (slotIndex > 6) {
-                if (FletchingTableRecipeRegistry.isValidFeather(itemStack)) {
-                    if (!this.insertItem(slotStack, 0, 1, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (FletchingTableRecipeRegistry.isValidShaft(itemStack)) {
-                    if (!this.insertItem(slotStack, 1, 2, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (FletchingTableRecipeRegistry.isValidTip(itemStack)) {
-                    if (!this.insertItem(slotStack, 2, 3, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (FletchingTableRecipeRegistry.isValidUpgrade(itemStack)) {
-                    if (!this.insertItem(slotStack, 3, 4, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (itemStack.isOf(Items.ARROW)) {
-                    if (!this.insertItem(slotStack, 4, 5, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (FletchingTableTippingMaterial.validItems.contains(itemStack.getItem())) {
+                if (FletchingTableTippingMaterial.validItems.contains(itemStack.getItem())) {
                     if (!this.insertItem(slotStack, 6, 7, false)) {
                         return ItemStack.EMPTY;
                     }
                     onContentChanged(this.inventory);
-                } else if (slotIndex < 61) {
+                } else if (attemptedCraftingMethod == FletchingTableRecipeRegistry.CraftingMethod.NONE) {
+                    if (checkTippingSlot(slotStack, itemStack) || checkCraftingSlots(slotStack, itemStack)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (attemptedCraftingMethod == FletchingTableRecipeRegistry.CraftingMethod.TIPPING) {
+                    if (!checkTippingSlot(slotStack, itemStack)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (attemptedCraftingMethod == FletchingTableRecipeRegistry.CraftingMethod.CRAFTING) {
+                    if (!checkCraftingSlots(slotStack, itemStack)) {
+                        return ItemStack.EMPTY;
+                    }
+                }  else if (slotIndex < 61) {
                     if (!this.insertItem(slotStack, 61, 70, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -201,9 +242,10 @@ public class FletchingTableScreenHandler extends ScreenHandler {
         return this.inventory.canPlayerUse(player);
     }
 
-    static class FletchingTableSlot extends Slot {
+    static class FletchingTableSlot extends Slot implements ToggleableSlot {
         private final Identifier SLOT_BACKGROUND;
         private final InputValidator INPUT_VALIDATOR;
+        private boolean isEnabled = true;
 
         public FletchingTableSlot(Inventory inventory, int index, int x, int y, Identifier slotBackground, InputValidator validator) {
             super(inventory, index, x, y);
@@ -216,6 +258,16 @@ public class FletchingTableScreenHandler extends ScreenHandler {
             return INPUT_VALIDATOR.validate(stack);
         }
 
+        @Override
+        public void setEnabled(boolean enabled) {
+            this.isEnabled = enabled;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return isEnabled;
+        }
+
         public Identifier getBackgroundSprite() {
             return this.SLOT_BACKGROUND;
         }
@@ -223,6 +275,10 @@ public class FletchingTableScreenHandler extends ScreenHandler {
 
      interface InputValidator {
         boolean validate(ItemStack stack);
+    }
+
+    interface ToggleableSlot {
+        void setEnabled(boolean enabled);
     }
 
     public class TippingMaterialSlot extends Slot {
@@ -278,7 +334,8 @@ public class FletchingTableScreenHandler extends ScreenHandler {
         }
     }
 
-    static class ArrowSlot extends Slot {
+    static class ArrowSlot extends Slot implements ToggleableSlot {
+        private boolean isEnabled = true;
         public ArrowSlot(Inventory inventory, int index, int x, int y) {
             super(inventory, index, x, y);
         }
@@ -291,9 +348,19 @@ public class FletchingTableScreenHandler extends ScreenHandler {
         public boolean canInsert(ItemStack stack) {
             return stack.getItem().equals(Items.ARROW);
         }
+
+        @Override
+        public void setEnabled(boolean enabled) {
+            this.isEnabled = enabled;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return isEnabled;
+        }
     }
 
-    class ResultSlot extends Slot {
+    static class ResultSlot extends Slot {
         private final FletchingTableTippingMaterial tippingMaterial;
         public ResultSlot(Inventory inventory, int index, int x, int y, FletchingTableTippingMaterial tippingMaterial) {
             super(inventory, index, x, y);
@@ -311,7 +378,7 @@ public class FletchingTableScreenHandler extends ScreenHandler {
                 inventory.getStack(x).decrement(1);
             }
             tippingMaterial.use(inventory);
-            context.run(((world, blockPos) -> world.playSound(null, blockPos, SoundEvents.ENTITY_VILLAGER_WORK_FLETCHER, SoundCategory.BLOCKS, 1, 1)));
+            //context.run(((world, blockPos) -> world.playSound(null, blockPos, SoundEvents.ENTITY_VILLAGER_WORK_FLETCHER, SoundCategory.BLOCKS, 1, 1)));
             super.onTakeItem(player, stack);
         }
     }
