@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.loserexe.vanillaarrowplus.screen.FletchingTableScreenHandler.*;
+
 public class FletchingTableRecipeRegistry {
     private static final Map<Recipie, Result> recipies = new HashMap<>();
     private static final List<Item> validFeathers = new ArrayList<>();
@@ -40,19 +42,38 @@ public class FletchingTableRecipeRegistry {
         return isValidIngredient(stack, validUpgrades);
     }
 
-    public static boolean craft(Inventory inventory, FletchingTableTippingMaterial tippingMaterial) {
-        try {
-            Recipie recipie = new Recipie(
-                    inventory.getStack(FletchingTableScreenHandler.FEATHER_SLOT_INDEX).getItem(),
-                    inventory.getStack(FletchingTableScreenHandler.SHAFT_SLOT_INDEX).getItem(),
-                    inventory.getStack(FletchingTableScreenHandler.TIP_SLOT_INDEX).getItem(),
-                    inventory.getStack(FletchingTableScreenHandler.UPGRADE_SLOT_INDEX).getItem());
-            Result result = recipies.get(recipie);
-            ItemStack resultStack = new ItemStack(result.item, result.amount);
-            inventory.setStack(FletchingTableScreenHandler.RESULT_SLOT_INDEX, resultStack);
-            return true;
-        } catch (Exception e) {
-             return tippingMaterial.craft(inventory);
+    public static CraftingMethod getCraftingMethod(Inventory inventory) {
+        boolean validCrafting = recipies.containsKey(Recipie.getFromInventory(inventory));
+        boolean validTipping = !inventory.getStack(ARROW_SLOT_INDEX).isEmpty() && !inventory.getStack(TIPPING_MATERIAL_SLOT_INDEX).isEmpty();
+
+        if (validCrafting && validTipping) {
+            return CraftingMethod.NONE;
+        }
+
+        if (validTipping) {
+            return CraftingMethod.TIPPING;
+        }
+
+        if (validCrafting) {
+            return CraftingMethod.CRAFTING;
+        }
+
+        return CraftingMethod.NONE;
+    }
+
+    public static void craft(Inventory inventory, CraftingMethod method, FletchingTableTippingMaterial tippingMaterial) {
+        switch (method) {
+            case CRAFTING -> {
+                Recipie recipie = Recipie.getFromInventory(inventory);
+                Result result = recipies.getOrDefault(recipie, null);
+                if (result == null) return;
+                ItemStack resulSlotStack = inventory.getStack(RESULT_SLOT_INDEX);
+                if (resulSlotStack.isEmpty() || !resulSlotStack.isOf(result.item)) {
+                    ItemStack resultStack = new ItemStack(result.item, result.amount);
+                    inventory.setStack(RESULT_SLOT_INDEX, resultStack);
+                }
+            }
+            case TIPPING -> tippingMaterial.craft(inventory);
         }
     }
 
@@ -76,7 +97,32 @@ public class FletchingTableRecipeRegistry {
             validTips.add(tip);
             validUpgrades.add(upgrade);
         }
+
+        public static Recipie getFromInventory(Inventory inventory) {
+            return new Recipie(
+                    inventory.getStack(FEATHER_SLOT_INDEX).getItem(),
+                    inventory.getStack(SHAFT_SLOT_INDEX).getItem(),
+                    inventory.getStack(TIP_SLOT_INDEX).getItem(),
+                    inventory.getStack(UPGRADE_SLOT_INDEX).getItem()
+            );
+        }
     }
 
     record Result(Item item, int amount) { }
+
+    public enum CraftingMethod {
+        NONE(0),
+        CRAFTING(1),
+        TIPPING(2);
+
+        private final int value;
+
+        CraftingMethod(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }

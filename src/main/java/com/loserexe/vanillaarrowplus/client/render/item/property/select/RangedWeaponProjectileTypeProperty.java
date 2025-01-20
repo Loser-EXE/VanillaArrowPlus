@@ -3,6 +3,8 @@ package com.loserexe.vanillaarrowplus.client.render.item.property.select;
 import com.loserexe.vanillaarrowplus.item.ModItems;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.item.property.select.SelectProperty;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.component.DataComponentTypes;
@@ -16,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class RangedWeaponProjectileTypeProperty implements SelectProperty<RangedWeaponProjectileTypeProperty.ProjectileType> {
     public static final SelectProperty.Type<RangedWeaponProjectileTypeProperty, ProjectileType> TYPE;
 
@@ -26,7 +29,12 @@ public class RangedWeaponProjectileTypeProperty implements SelectProperty<Ranged
         ChargedProjectilesComponent chargedProjectilesComponent = stack.get(DataComponentTypes.CHARGED_PROJECTILES);
         if (chargedProjectilesComponent == null || chargedProjectilesComponent.isEmpty()) return ProjectileType.NONE;
         String itemName = Registries.ITEM.getId(chargedProjectilesComponent.getProjectiles().getFirst().getItem()).getPath(); // Assumes they are all the same
-        return ProjectileType.valueOf(itemName.toUpperCase());
+        try {
+            return ProjectileType.valueOf(itemName.toUpperCase());
+        } catch (Exception e) {
+            return ProjectileType.ARROW;
+        }
+
     }
 
     @Override
@@ -42,6 +50,7 @@ public class RangedWeaponProjectileTypeProperty implements SelectProperty<Ranged
         NONE("none"),
         FIREWORK_ROCKET("firework"),
         ARROW("arrow"),
+        TIPPED_ARROW("tipped_arrow"),
         SPECTRAL_ARROW("spectral_arrow"),
         AERIAL_ARROW("aerial_arrow"),
         AMETHYST_ARROW("amethyst_arrow"),

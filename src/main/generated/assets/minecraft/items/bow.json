@@ -71,6 +71,52 @@
               {
                 "model": {
                   "type": "minecraft:model",
+                  "model": "vanillaarrowplus:item/bow_tipped_arrow_pulling_1",
+                  "tints": [
+                    {
+                      "type": "vanillaarrowplus:ranged_weapon_tint_source",
+                      "default": -13083194
+                    }
+                  ]
+                },
+                "threshold": 0.65
+              },
+              {
+                "model": {
+                  "type": "minecraft:model",
+                  "model": "vanillaarrowplus:item/bow_tipped_arrow_pulling_2",
+                  "tints": [
+                    {
+                      "type": "vanillaarrowplus:ranged_weapon_tint_source",
+                      "default": -13083194
+                    }
+                  ]
+                },
+                "threshold": 0.9
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:model",
+              "model": "vanillaarrowplus:item/bow_tipped_arrow_pulling_0",
+              "tints": [
+                {
+                  "type": "vanillaarrowplus:ranged_weapon_tint_source",
+                  "default": -13083194
+                }
+              ]
+            },
+            "property": "minecraft:use_duration",
+            "scale": 0.05
+          },
+          "when": "tipped_arrow"
+        },
+        {
+          "model": {
+            "type": "minecraft:range_dispatch",
+            "entries": [
+              {
+                "model": {
+                  "type": "minecraft:model",
                   "model": "vanillaarrowplus:item/bow_aerial_arrow_pulling_1"
                 },
                 "threshold": 0.65

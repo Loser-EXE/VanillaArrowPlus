@@ -32,7 +32,8 @@ public class ModEntityTypes {
     private static <T extends ProjectileEntity> EntityType<T> registerProjectileEntity(String name, EntityType.EntityFactory<T> entityBuilder) {
         EntityType.Builder<T> builder = EntityType.Builder.create(entityBuilder, SpawnGroup.MISC)
                 .dimensions(0.5f, 0.5f)
-                .eyeHeight(0.13f);
+                .eyeHeight(0.13f)
+                .makeFireImmune();
 
         return Registry.register(Registries.ENTITY_TYPE,
                 Identifier.of(VanillaArrowPlus.MOD_ID, name),
@@ -42,7 +43,8 @@ public class ModEntityTypes {
     private static <T extends Entity> EntityType<T> registerEntity(String name, EntityType.EntityFactory<T> entityBuilder, float size, float eyeHeight) {
         EntityType.Builder<T> builder = EntityType.Builder.create(entityBuilder, SpawnGroup.MISC)
                 .dimensions(size, size)
-                .eyeHeight(eyeHeight);
+                .eyeHeight(eyeHeight)
+                .makeFireImmune();
 
         return Registry.register(Registries.ENTITY_TYPE,
                 Identifier.of(VanillaArrowPlus.MOD_ID, name),

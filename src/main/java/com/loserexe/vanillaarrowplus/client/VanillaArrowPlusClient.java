@@ -4,6 +4,7 @@ import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
 import com.loserexe.vanillaarrowplus.client.render.entity.AmethystShardRenderer;
 import com.loserexe.vanillaarrowplus.client.render.entity.ModdedArrowRenderer;
 import com.loserexe.vanillaarrowplus.client.render.item.property.select.RangedWeaponProjectileTypeProperty;
+import com.loserexe.vanillaarrowplus.client.render.item.tint.RangedWeaponTintSource;
 import com.loserexe.vanillaarrowplus.entity.ModEntityTypes;
 import com.loserexe.vanillaarrowplus.screen.FletchingTableScreen;
 import com.loserexe.vanillaarrowplus.screen.ModScreenHandlers;
@@ -11,6 +12,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.item.property.select.SelectProperties;
+import net.minecraft.client.render.item.tint.TintSourceTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.Identifier;
 
@@ -36,5 +38,6 @@ public class VanillaArrowPlusClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.FLETCHING_TABLE, FletchingTableScreen::new);
 
         SelectProperties.ID_MAPPER.put(Identifier.of(VanillaArrowPlus.MOD_ID, "ranged_weapon_projectile_type_property"), RangedWeaponProjectileTypeProperty.TYPE);
+        TintSourceTypes.ID_MAPPER.put(Identifier.of(VanillaArrowPlus.MOD_ID, "ranged_weapon_tint_source"), RangedWeaponTintSource.CODEC);
     }
 }

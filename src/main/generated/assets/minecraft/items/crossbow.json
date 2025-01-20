@@ -28,6 +28,19 @@
         {
           "model": {
             "type": "minecraft:model",
+            "model": "vanillaarrowplus:item/crossbow_tipped_arrow",
+            "tints": [
+              {
+                "type": "vanillaarrowplus:ranged_weapon_tint_source",
+                "default": -13083194
+              }
+            ]
+          },
+          "when": "tipped_arrow"
+        },
+        {
+          "model": {
+            "type": "minecraft:model",
             "model": "vanillaarrowplus:item/crossbow_aerial_arrow"
           },
           "when": "aerial_arrow"

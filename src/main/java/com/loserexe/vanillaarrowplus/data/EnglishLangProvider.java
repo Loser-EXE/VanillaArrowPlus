@@ -25,7 +25,7 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.CHARGED_COPPER_ARROW, "Charged Copper Arrow");
         translationBuilder.add(ModItems.ECHO_ARROW, "Echo Arrow");
         translationBuilder.add(ModItems.GOLD_ARROW, "Gold Arrow");
-        translationBuilder.add(ModItems.HONEY_ARROW, "Honey Arrow");
+        translationBuilder.add(ModItems.HONEY_ARROW, "Dripping Arrow");
         translationBuilder.add(ModItems.IRON_ARROW, "Iron Arrow");
         translationBuilder.add(ModItems.PRISMARINE_ARROW, "Prismarine Arrow");
         translationBuilder.add(ModItems.REDSTONE_ARROW, "Redstone Arrow");
@@ -48,6 +48,8 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(ModEntityTypes.AMETHYST_SHARD, "Amethyst Shard");
 
         translationBuilder.add("container.fletching_table", "Fletching Table");
+        translationBuilder.add("container.fletching_table.cant_tip", "Can't tip arrows while crafting");
+        translationBuilder.add("container.fletching_table.cant_craft", "Can't craft arrows while tipping");
 
         try {
             Path existingFilePath = dataOutput.getModContainer().findPath("assets/vanillaarrowplus/lang/en_us.existing.json").get();

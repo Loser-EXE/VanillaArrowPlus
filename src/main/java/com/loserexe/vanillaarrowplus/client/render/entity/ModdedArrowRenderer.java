@@ -63,7 +63,7 @@ public class ModdedArrowRenderer extends ProjectileEntityRenderer<PersistentProj
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(state.yaw - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(state.pitch));
 
-        float s = (float) state.shake - state.delta;
+        float s = state.shake - state.delta;
         if (s > 0.0f) {
             float t = -MathHelper.sin(s * 3.0f) * s;
             matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(t));

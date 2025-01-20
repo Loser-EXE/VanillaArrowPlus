@@ -8,7 +8,7 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 
 public class ModScreenHandlers {
-    public static ScreenHandlerType<FletchingTableScreenHandler> FLETCHING_TABLE = Registry.register(
+    public static final ScreenHandlerType<FletchingTableScreenHandler> FLETCHING_TABLE = Registry.register(
             Registries.SCREEN_HANDLER,
             Identifier.of(VanillaArrowPlus.MOD_ID, "fletching_table")
             , new ScreenHandlerType<>(FletchingTableScreenHandler::new, FeatureFlags.VANILLA_FEATURES));

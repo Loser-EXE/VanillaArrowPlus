@@ -1,5 +1,7 @@
 {
   "container.fletching_table": "Fletching Table",
+  "container.fletching_table.cant_craft": "Can't craft arrows while tipping",
+  "container.fletching_table.cant_tip": "Can't tip arrows while crafting",
   "effect.vanillaarrowplus.honeyed": "Honeyed",
   "entity.vanillaarrowplus.aerial_arrow": "Aerial Arrow",
   "entity.vanillaarrowplus.amethyst_arrow": "Amethyst Arrow",
@@ -21,7 +23,7 @@
   "item.vanillaarrowplus.copper_arrow": "Copper Arrow",
   "item.vanillaarrowplus.echo_arrow": "Echo Arrow",
   "item.vanillaarrowplus.gold_arrow": "Gold Arrow",
-  "item.vanillaarrowplus.honey_arrow": "Honey Arrow",
+  "item.vanillaarrowplus.honey_arrow": "Dripping Arrow",
   "item.vanillaarrowplus.iron_arrow": "Iron Arrow",
   "item.vanillaarrowplus.prismarine_arrow": "Prismarine Arrow",
   "item.vanillaarrowplus.redstone_arrow": "Redstone Arrow",

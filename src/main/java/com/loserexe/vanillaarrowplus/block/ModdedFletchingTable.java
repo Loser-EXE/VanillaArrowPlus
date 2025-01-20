@@ -2,6 +2,7 @@ package com.loserexe.vanillaarrowplus.block;
 
 import com.loserexe.vanillaarrowplus.block.entity.FletchingTableBlockEntity;
 import com.loserexe.vanillaarrowplus.block.entity.ModBlockEntityTypes;
+import com.loserexe.vanillaarrowplus.screen.FletchingTableScreenHandler;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -9,7 +10,9 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -45,5 +48,16 @@ public class ModdedFletchingTable extends BlockWithEntity {
         }
 
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            FletchingTableBlockEntity fletchingTableBlockEntity = world.getBlockEntity(pos, ModBlockEntityTypes.FLETCHING_TABLE).orElseThrow();
+            fletchingTableBlockEntity.setStack(FletchingTableScreenHandler.RESULT_SLOT_INDEX, ItemStack.EMPTY);
+            fletchingTableBlockEntity.setStack(FletchingTableScreenHandler.TIPPING_MATERIAL_SLOT_INDEX, ItemStack.EMPTY);
+            ItemScatterer.onStateReplaced(state, newState, world, pos);
+        }
+        super.onStateReplaced(state, world, pos, newState, moved);
     }
 }

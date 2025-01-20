@@ -2,6 +2,7 @@ package com.loserexe.vanillaarrowplus.data;
 
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
 import com.loserexe.vanillaarrowplus.client.render.item.property.select.RangedWeaponProjectileTypeProperty;
+import com.loserexe.vanillaarrowplus.client.render.item.tint.RangedWeaponTintSource;
 import com.loserexe.vanillaarrowplus.item.ModItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -58,6 +59,10 @@ public class ModelGenerator extends FabricModelProvider {
         crossbowSwtichCase.add(getCrossbowSwtichCase(ProjectileType.ARROW, true, itemModelGenerator.modelCollector));
         crossbowSwtichCase.add(getCrossbowSwtichCase(ProjectileType.FIREWORK_ROCKET, true, itemModelGenerator.modelCollector));
         crossbowSwtichCase.add(getCrossbowSwtichCase(ProjectileType.SPECTRAL_ARROW, false, itemModelGenerator.modelCollector));
+
+        Identifier crossbowTipped = registerTippedArrowStage("", Items.CROSSBOW, Models.CROSSBOW, itemModelGenerator.modelCollector);
+        crossbowSwtichCase.add(ItemModels.switchCase(ProjectileType.TIPPED_ARROW, ItemModels.tinted(crossbowTipped, new RangedWeaponTintSource())));
+
         for (Item item : ModItems.arrows) {
             ProjectileType type = ProjectileType.valueOf(Registries.ITEM.getId(item).getPath().toUpperCase());
             crossbowSwtichCase.add(getCrossbowSwtichCase(type, false, itemModelGenerator.modelCollector));
@@ -79,6 +84,22 @@ public class ModelGenerator extends FabricModelProvider {
         List<SelectItemModel.SwitchCase<ProjectileType>> bowSwtichCase = new ArrayList<>();
         bowSwtichCase.add(getBowSwtichCase(ProjectileType.ARROW, true, itemModelGenerator.modelCollector));
         bowSwtichCase.add(getBowSwtichCase(ProjectileType.SPECTRAL_ARROW, false, itemModelGenerator.modelCollector));
+
+        Identifier bowTippedArrowStage0Id = registerTippedArrowStage("_pulling_0", Items.BOW, Models.BOW, itemModelGenerator.modelCollector);
+        ItemModel.Unbaked bowTippedArrowStage0 = ItemModels.tinted(bowTippedArrowStage0Id, new RangedWeaponTintSource());
+        Identifier bowTippedArrowStage1Id = registerTippedArrowStage("_pulling_1", Items.BOW, Models.BOW, itemModelGenerator.modelCollector);
+        ItemModel.Unbaked bowTippedArrowStage1 = ItemModels.tinted(bowTippedArrowStage1Id, new RangedWeaponTintSource());
+        Identifier bowTippedArrowStage2Id = registerTippedArrowStage("_pulling_2", Items.BOW, Models.BOW, itemModelGenerator.modelCollector);
+        ItemModel.Unbaked bowTippedArrowStage2 = ItemModels.tinted(bowTippedArrowStage2Id, new RangedWeaponTintSource());
+
+         bowSwtichCase.add(ItemModels.switchCase(ProjectileType.TIPPED_ARROW, ItemModels.rangeDispatch(
+                 new UseDurationProperty(false),
+                 0.05F,
+                 bowTippedArrowStage0,
+                 ItemModels.rangeDispatchEntry(bowTippedArrowStage1, 0.65F),
+                 ItemModels.rangeDispatchEntry(bowTippedArrowStage2, 0.9F)
+        )));
+
         for (Item item : ModItems.arrows) {
             ProjectileType type = ProjectileType.valueOf(Registries.ITEM.getId(item).getPath().toUpperCase());
             bowSwtichCase.add(getBowSwtichCase(type, false, itemModelGenerator.modelCollector));
@@ -115,11 +136,20 @@ public class ModelGenerator extends FabricModelProvider {
         ));
     }
 
+    private Identifier registerTippedArrowStage(String suffix, Item item, Model model, BiConsumer<Identifier, ModelSupplier> modelCollector) {
+        Identifier tippedArrowModel = getItemSubModelIdLocalNameSpace(item, "_tipped_arrow" + suffix);
+        Identifier tippedArrowModelBase = getItemSubModelIdLocalNameSpace(item, "_tipped_arrow_base" + suffix);
+        Identifier tippedArrowModelHead = getItemSubModelIdLocalNameSpace(item, "_tipped_arrow_head" + suffix);
+        return model.upload(tippedArrowModel, TextureMap.layer0(tippedArrowModelHead).register(TextureKey.LAYER1, tippedArrowModelBase), modelCollector);
+    }
+
     private Identifier registerSubModel(Model model, Item item, String suffix, boolean vanilla, BiConsumer<Identifier, ModelSupplier> modelCollector) {
-        Identifier modelIdentifier = ModelIds.getItemSubModelId(item, suffix);
-        if (!vanilla) {
-            modelIdentifier = Identifier.of(VanillaArrowPlus.MOD_ID, modelIdentifier.getPath());
-        }
+        Identifier modelIdentifier = vanilla ? ModelIds.getItemSubModelId(item, suffix) : getItemSubModelIdLocalNameSpace(item, suffix);
         return model.upload(modelIdentifier, TextureMap.layer0(modelIdentifier), modelCollector);
+    }
+
+    public static Identifier getItemSubModelIdLocalNameSpace(Item item, String suffix) {
+        Identifier identifier = Identifier.of(VanillaArrowPlus.MOD_ID, Registries.ITEM.getId(item).getPath());
+        return identifier.withPath((path) -> "item/" + path + suffix);
     }
 }

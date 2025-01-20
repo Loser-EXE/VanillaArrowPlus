@@ -39,15 +39,13 @@ public class BlazingArrowEntity extends ModdedPersistentProjectileEntity {
 
         //Bruh
         boolean bowIsEnchantedWithFlame = false;
-        try {
-            Registry<Enchantment> enchantmentRegistry = getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
-            Enchantment enchantment = enchantmentRegistry.get(Enchantments.FLAME);
-            RegistryEntry<Enchantment> enchantmentRegistryEntry = enchantmentRegistry.getEntry(enchantment);
-            ItemEnchantmentsComponent enchantments = EnchantmentHelper.getEnchantments(Objects.requireNonNull(this.getWeaponStack()));
-            bowIsEnchantedWithFlame = enchantments.getLevel(enchantmentRegistryEntry) != 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        Registry<Enchantment> enchantmentRegistry = getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+        Enchantment enchantment = enchantmentRegistry.get(Enchantments.FLAME);
+        RegistryEntry<Enchantment> enchantmentRegistryEntry = enchantmentRegistry.getEntry(enchantment);
+        ItemEnchantmentsComponent enchantments = EnchantmentHelper.getEnchantments(Objects.requireNonNull(this.getWeaponStack()));
+        bowIsEnchantedWithFlame = enchantments.getLevel(enchantmentRegistryEntry) != 0;
+
 
         if(bowIsEnchantedWithFlame) {
             entityHitResult.getEntity().setOnFireForTicks(200);
