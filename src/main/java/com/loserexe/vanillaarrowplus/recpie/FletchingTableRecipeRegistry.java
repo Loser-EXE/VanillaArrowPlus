@@ -83,7 +83,7 @@ public class FletchingTableRecipeRegistry {
         recipies.put(new Recipie(Items.FEATHER, Items.STICK, Items.FLINT, Items.IRON_INGOT), new Result(ModItems.IRON_ARROW, 8));
         recipies.put(new Recipie(Items.FEATHER, Items.STICK, Items.FLINT, Items.COPPER_INGOT), new Result(ModItems.COPPER_ARROW, 8));
         recipies.put(new Recipie(Items.FEATHER, Items.STICK, Items.AMETHYST_SHARD, Items.AIR), new Result(ModItems.AMETHYST_ARROW, 16));
-        recipies.put(new Recipie(Items.FEATHER, Items.STICK, Items.FLINT, Items.PRISMARINE_SHARD), new Result(ModItems.PRISMARINE_ARROW, 8));
+        recipies.put(new Recipie(Items.FEATHER, Items.STICK, Items.PRISMARINE_SHARD, Items.AIR), new Result(ModItems.PRISMARINE_ARROW, 8));
         recipies.put(new Recipie(Items.FEATHER, Items.STICK, Items.QUARTZ, Items.SLIME_BALL), new Result(ModItems.SLIME_ARROW, 1));
         recipies.put(new Recipie(Items.FEATHER, Items.STICK, Items.FLINT, Items.ECHO_SHARD), new Result(ModItems.ECHO_ARROW, 8));
         recipies.put(new Recipie(Items.FEATHER, Items.BLAZE_ROD, Items.FLINT, Items.FIRE_CHARGE), new Result(ModItems.BLAZING_ARROW, 8));
