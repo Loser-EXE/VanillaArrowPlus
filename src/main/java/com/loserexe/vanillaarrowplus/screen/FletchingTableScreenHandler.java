@@ -306,7 +306,7 @@ public class FletchingTableScreenHandler extends ScreenHandler {
         @Override
         public void markDirty() {
             super.markDirty();
-            if (this.hasStack()) {
+            if (this.hasStack() && tippingMaterial.getFillAmount() == 0) {
                 updateTippingMaterial();
             }
         }
@@ -360,7 +360,7 @@ public class FletchingTableScreenHandler extends ScreenHandler {
         }
     }
 
-    static class ResultSlot extends Slot {
+    class ResultSlot extends Slot {
         private final FletchingTableTippingMaterial tippingMaterial;
         public ResultSlot(Inventory inventory, int index, int x, int y, FletchingTableTippingMaterial tippingMaterial) {
             super(inventory, index, x, y);
@@ -377,8 +377,10 @@ public class FletchingTableScreenHandler extends ScreenHandler {
                 if (x == FletchingTableScreenHandler.RESULT_SLOT_INDEX || x == FletchingTableScreenHandler.TIPPING_MATERIAL_SLOT_INDEX) continue;
                 inventory.getStack(x).decrement(1);
             }
-            tippingMaterial.use(inventory);
-            //context.run(((world, blockPos) -> world.playSound(null, blockPos, SoundEvents.ENTITY_VILLAGER_WORK_FLETCHER, SoundCategory.BLOCKS, 1, 1)));
+            FletchingTableRecipeRegistry.CraftingMethod craftingMethod = getCraftingMethod();
+            if (craftingMethod == FletchingTableRecipeRegistry.CraftingMethod.TIPPING) {
+                tippingMaterial.use(inventory);
+            }
             super.onTakeItem(player, stack);
         }
     }
