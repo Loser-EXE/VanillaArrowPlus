@@ -35,7 +35,7 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
         ItemStack projectile = chargedProjectilesComponent.getProjectiles().getLast(); // The only time it would have multiple is with multishot. Prevents arrows from being duplicated.
         projectile.remove(DataComponentTypes.INTANGIBLE_PROJECTILE);
         stack.set(DataComponentTypes.CHARGED_PROJECTILES, ChargedProjectilesComponent.DEFAULT);
-        player.getInventory().insertStack(projectile);
+        cursorStackReference.set(projectile);
         return true;
     }
 }
