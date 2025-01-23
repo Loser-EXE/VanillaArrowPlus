@@ -100,7 +100,7 @@ public class ModelGenerator extends FabricModelProvider {
                  ItemModels.rangeDispatchEntry(bowTippedArrowStage2, 0.9F)
         )));
 
-        for (Item item : ModItems.arrows) {
+        for (Item item : ModItems.normal_arrows) {
             ProjectileType type = ProjectileType.valueOf(Registries.ITEM.getId(item).getPath().toUpperCase());
             bowSwtichCase.add(getBowSwtichCase(type, false, itemModelGenerator.modelCollector));
         }

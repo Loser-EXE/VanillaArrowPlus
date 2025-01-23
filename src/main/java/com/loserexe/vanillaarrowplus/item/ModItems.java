@@ -20,14 +20,16 @@ import java.util.List;
 
 public class ModItems {
     public static final List<Item> arrows = new ArrayList<>();
+    public static final List<Item> normal_arrows = new ArrayList<>();
+    public static final List<Item> crossbow_arrows = new ArrayList<>();
 
-    public static final Item AERIAL_ARROW = register("aerial_arrow", ModdedArrowItem::new, AerialArrowEntity.class, ModEntityTypes.AERIAL_ARROW);
+    public static final Item AERIAL_ARROW = register("aerial_arrow", ModdedArrowItem::new, AerialArrowEntity.class, ModEntityTypes.AERIAL_ARROW, true);
     public static final Item AMETHYST_ARROW = register("amethyst_arrow", ModdedArrowItem::new, AmethystArrowEntity.class, ModEntityTypes.AMETHYST_ARROW);
-    public static final Item BLAZING_ARROW = register("blazing_arrow", ModdedArrowItem::new, BlazingArrowEntity.class, ModEntityTypes.BLAZING_ARROW);
+    public static final Item BLAZING_ARROW = register("blazing_arrow", ModdedArrowItem::new, BlazingArrowEntity.class, ModEntityTypes.BLAZING_ARROW, true);
     public static final Item CARROT_ARROW = register("carrot_arrow", ModdedArrowItem::new, CarrotArrowEntity.class, ModEntityTypes.CARROT_ARROW);
     public static final Item COPPER_ARROW = register("copper_arrow", ModdedArrowItem::new, CopperArrowEntity.class, ModEntityTypes.COPPER_ARROW);
     public static final Item CHARGED_COPPER_ARROW = register("charged_copper_arrow", ModdedArrowItem::new, ChargedCopperArrowEntity.class, ModEntityTypes.CHARGED_COPPER_ARROW);
-    public static final Item ECHO_ARROW = register("echo_arrow", ModdedArrowItem::new, EchoArrowEntity.class, ModEntityTypes.ECHO_ARROW);
+    public static final Item ECHO_ARROW = register("echo_arrow", ModdedArrowItem::new, EchoArrowEntity.class, ModEntityTypes.ECHO_ARROW, true);
     public static final Item GOLD_ARROW = register("gold_arrow", ModdedArrowItem::new, GoldArrowEntity.class, ModEntityTypes.GOLD_ARROW);
     public static final Item HONEY_ARROW = register("honey_arrow", ModdedArrowItem::new, HoneyArrowEntity.class, ModEntityTypes.HONEY_ARROW);
     public static final Item IRON_ARROW = register("iron_arrow", ModdedArrowItem::new, IronArrowEntity.class, ModEntityTypes.IRON_ARROW);
@@ -37,6 +39,10 @@ public class ModItems {
 
 
     private static Item register(String name, ItemBuilder builder, Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType) {
+        return  register(name, builder, entityClass, entityType, false);
+    }
+
+    private static Item register(String name, ItemBuilder builder, Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType, boolean crossbowExclusive) {
         Item.Settings settings = new Item.Settings();
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VanillaArrowPlus.MOD_ID, name));
         settings.registryKey(key);
@@ -44,6 +50,11 @@ public class ModItems {
         Item registeredItem = Registry.register(Registries.ITEM, key, item);
         DispenserBlock.registerProjectileBehavior(item);
         arrows.add(registeredItem);
+        if (crossbowExclusive) {
+            crossbow_arrows.add(registeredItem);
+        } else {
+            normal_arrows.add(registeredItem);
+        }
         return registeredItem;
     }
 
