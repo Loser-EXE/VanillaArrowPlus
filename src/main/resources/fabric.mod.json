@@ -12,7 +12,7 @@
         "repo": "https://github.com/loserexe/PowerPorksFletchingTable"
     },
     "license": "LGPL-3.0",
-    "icon": "assets/vanillaarrowplus/icon.png",
+    "icon": "assets/vanillaarrowplus/icon.png.old",
     "environment": "*",
     "entrypoints": {
         "fabric-datagen": [
