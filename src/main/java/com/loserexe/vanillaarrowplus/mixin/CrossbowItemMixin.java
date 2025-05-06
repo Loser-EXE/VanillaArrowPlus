@@ -3,6 +3,7 @@ package com.loserexe.vanillaarrowplus.mixin;
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ChargedProjectilesComponent;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.CrossbowItem;
@@ -15,6 +16,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Predicate;
@@ -25,6 +27,8 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
     @Shadow public abstract Predicate<ItemStack> getHeldProjectiles();
 
     @Shadow public abstract Predicate<ItemStack> getProjectiles();
+
+    @Shadow private boolean charged;
 
     public CrossbowItemMixin(Settings settings) {
         super(settings);
@@ -51,4 +55,12 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
         cursorStackReference.set(projectile);
         return true;
     }
+
+    // Code will remain dormant until the values are ironed out.
+//    @Redirect(method = "getPullTime", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;getCrossbowChargeTime(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;F)F"))
+//    private static float getCrossbowChargeTime(ItemStack stack, LivingEntity user, float baseCrossbowChargeTime) {
+//        ItemStack projectileStack = user.getProjectileType(stack);
+//        System.out.println(projectileStack);
+//        return 1;
+//    }
 }

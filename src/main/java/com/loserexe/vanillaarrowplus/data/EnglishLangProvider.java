@@ -51,6 +51,8 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add("container.fletching_table.cant_tip", "Can't tip arrows while crafting");
         translationBuilder.add("container.fletching_table.cant_craft", "Can't craft arrows while tipping");
 
+        translationBuilder.add("container.lightning_rod", "Lightning Rod");
+
         try {
             Path existingFilePath = dataOutput.getModContainer().findPath("assets/vanillaarrowplus/lang/en_us.existing.json").get();
             translationBuilder.add(existingFilePath);

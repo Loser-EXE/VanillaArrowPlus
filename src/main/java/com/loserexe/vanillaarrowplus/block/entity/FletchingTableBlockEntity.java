@@ -65,6 +65,7 @@ public class FletchingTableBlockEntity extends LockableContainerBlockEntity {
             }
         };
     }
+
     public static void tick(World world, BlockPos pos, BlockState state, FletchingTableBlockEntity blockEntity) {
     }
 

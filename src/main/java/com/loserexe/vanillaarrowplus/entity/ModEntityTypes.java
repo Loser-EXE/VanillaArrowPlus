@@ -27,7 +27,7 @@ public class ModEntityTypes {
     public static final EntityType<RedstoneArrowEntity> REDSTONE_ARROW = registerProjectileEntity("redstone_arrow", RedstoneArrowEntity::new);
     public static final EntityType<SlimeArrowEntity> SLIME_ARROW = registerProjectileEntity("slime_arrow", SlimeArrowEntity::new);
 
-    public static final EntityType<AmethystShardEntity> AMETHYST_SHARD = registerEntity("amethyst_shard", AmethystShardEntity::new, 0.25f, 0.1f);
+    public static final EntityType<AmethystShardEntity> AMETHYST_SHARD = registerEntity("amethyst_shard", AmethystShardEntity::new, 0.5f, 0.1f);
 
     private static <T extends ProjectileEntity> EntityType<T> registerProjectileEntity(String name, EntityType.EntityFactory<T> entityBuilder) {
         EntityType.Builder<T> builder = EntityType.Builder.create(entityBuilder, SpawnGroup.MISC)

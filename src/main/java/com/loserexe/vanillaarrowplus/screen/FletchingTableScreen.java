@@ -6,15 +6,12 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 
-import static com.loserexe.vanillaarrowplus.screen.FletchingTableScreenHandler.*;
 
 public class FletchingTableScreen extends HandledScreen<FletchingTableScreenHandler> {
     private static final Identifier TEXTURE = Identifier.of(VanillaArrowPlus.MOD_ID, "textures/gui/container/fletching_table.png");

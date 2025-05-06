@@ -67,7 +67,6 @@ public class RangedWeaponProjectileTypeProperty implements SelectProperty<Ranged
         SLIME_ARROW("slime_arrow");
 
         public static final Codec<RangedWeaponProjectileTypeProperty.ProjectileType> CODEC = StringIdentifiable.createCodec(RangedWeaponProjectileTypeProperty.ProjectileType::values);
-        private static final Map<Item, ProjectileType> test = new HashMap<>();
         private final String name;
 
         ProjectileType(String name) {

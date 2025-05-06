@@ -31,8 +31,7 @@
               "type": "minecraft:model",
               "model": "minecraft:item/bow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "arrow"
         },
@@ -59,8 +58,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_spectral_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "spectral_arrow"
         },
@@ -105,8 +103,7 @@
                 }
               ]
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "tipped_arrow"
         },
@@ -133,8 +130,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_amethyst_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "amethyst_arrow"
         },
@@ -161,8 +157,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_carrot_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "carrot_arrow"
         },
@@ -189,8 +184,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_copper_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "copper_arrow"
         },
@@ -217,8 +211,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_charged_copper_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "charged_copper_arrow"
         },
@@ -245,8 +238,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_gold_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "gold_arrow"
         },
@@ -273,8 +265,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_honey_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "honey_arrow"
         },
@@ -301,8 +292,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_iron_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "iron_arrow"
         },
@@ -329,8 +319,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_prismarine_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "prismarine_arrow"
         },
@@ -357,8 +346,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_redstone_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "redstone_arrow"
         },
@@ -385,8 +373,7 @@
               "type": "minecraft:model",
               "model": "vanillaarrowplus:item/bow_slime_arrow_pulling_0"
             },
-            "property": "minecraft:use_duration",
-            "scale": 0.05
+            "property": "vanillaarrowplus:bow_pull_property"
           },
           "when": "slime_arrow"
         }

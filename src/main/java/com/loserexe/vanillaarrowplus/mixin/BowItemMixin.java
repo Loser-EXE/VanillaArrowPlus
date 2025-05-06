@@ -12,9 +12,8 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.List;
 
 @Mixin(BowItem.class)
 public class BowItemMixin {
@@ -29,5 +28,10 @@ public class BowItemMixin {
 
         ItemStack projectileType = user.getProjectileType(stack);
         if (!stack.isEmpty()) stack.set(DataComponentTypes.CHARGED_PROJECTILES, ChargedProjectilesComponent.of(projectileType));
+    }
+
+    @ModifyVariable(method = "getPullProgress", at = @At("HEAD"), ordinal = 0, argsOnly = true)
+    private static int getPullProgressSetUseTicks(int useTicks) {
+        return useTicks/2;
     }
 }

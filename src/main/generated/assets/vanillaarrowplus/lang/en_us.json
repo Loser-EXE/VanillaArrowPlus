@@ -2,6 +2,7 @@
   "container.fletching_table": "Fletching Table",
   "container.fletching_table.cant_craft": "Can't craft arrows while tipping",
   "container.fletching_table.cant_tip": "Can't tip arrows while crafting",
+  "container.lightning_rod": "Lightning Rod",
   "effect.vanillaarrowplus.honeyed": "Honeyed",
   "entity.vanillaarrowplus.aerial_arrow": "Aerial Arrow",
   "entity.vanillaarrowplus.amethyst_arrow": "Amethyst Arrow",

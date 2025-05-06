@@ -1,6 +1,7 @@
 package com.loserexe.vanillaarrowplus.data;
 
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
+import com.loserexe.vanillaarrowplus.client.render.item.property.numeric.BowPullProperty;
 import com.loserexe.vanillaarrowplus.client.render.item.property.select.RangedWeaponProjectileTypeProperty;
 import com.loserexe.vanillaarrowplus.client.render.item.tint.RangedWeaponTintSource;
 import com.loserexe.vanillaarrowplus.item.ModItems;
@@ -12,7 +13,6 @@ import net.minecraft.client.data.*;
 import net.minecraft.client.render.item.model.ItemModel;
 import net.minecraft.client.render.item.model.SelectItemModel;
 import net.minecraft.client.render.item.property.numeric.CrossbowPullProperty;
-import net.minecraft.client.render.item.property.numeric.UseDurationProperty;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
@@ -93,8 +93,7 @@ public class ModelGenerator extends FabricModelProvider {
         ItemModel.Unbaked bowTippedArrowStage2 = ItemModels.tinted(bowTippedArrowStage2Id, new RangedWeaponTintSource());
 
          bowSwtichCase.add(ItemModels.switchCase(ProjectileType.TIPPED_ARROW, ItemModels.rangeDispatch(
-                 new UseDurationProperty(false),
-                 0.05F,
+                 new BowPullProperty(),
                  bowTippedArrowStage0,
                  ItemModels.rangeDispatchEntry(bowTippedArrowStage1, 0.65F),
                  ItemModels.rangeDispatchEntry(bowTippedArrowStage2, 0.9F)
@@ -128,8 +127,7 @@ public class ModelGenerator extends FabricModelProvider {
         ItemModel.Unbaked bowPullingStage1 = ItemModels.basic(registerSubModel(Models.BOW, Items.BOW, arrowName + "_pulling_1", vanilla, modelCollector));
         ItemModel.Unbaked bowPullingStage2 = ItemModels.basic(registerSubModel(Models.BOW, Items.BOW, arrowName + "_pulling_2", vanilla, modelCollector));
         return ItemModels.switchCase(type, ItemModels.rangeDispatch(
-                new UseDurationProperty(false),
-                0.05F,
+                new BowPullProperty(),
                 bowPullingStatge0,
                 ItemModels.rangeDispatchEntry(bowPullingStage1, 0.65F),
                 ItemModels.rangeDispatchEntry(bowPullingStage2, 0.9F)

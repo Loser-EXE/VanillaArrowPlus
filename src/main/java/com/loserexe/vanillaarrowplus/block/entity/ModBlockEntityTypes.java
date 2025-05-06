@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 
 public class ModBlockEntityTypes {
     public static final BlockEntityType<FletchingTableBlockEntity> FLETCHING_TABLE = register("fletching_table", FletchingTableBlockEntity::new, Blocks.FLETCHING_TABLE);
+    public static final BlockEntityType<LightningRodBlockEntity> LIGHTNING_ROD = register("lightning_rod", LightningRodBlockEntity::new, Blocks.LIGHTNING_ROD);
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block block) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE,
