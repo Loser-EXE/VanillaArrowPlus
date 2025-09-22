@@ -3,12 +3,12 @@ package com.loserexe.vanillaarrowplus.item;
 import com.loserexe.vanillaarrowplus.entity.projectile.ModdedPersistentProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
@@ -47,5 +47,9 @@ public class ModdedArrowItem extends ArrowItem {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public float getPullProgressMultiplier(LivingEntity player) {
+        return 1;
     }
 }

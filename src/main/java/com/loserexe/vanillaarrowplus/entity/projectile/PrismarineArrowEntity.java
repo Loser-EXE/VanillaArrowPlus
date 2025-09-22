@@ -21,6 +21,19 @@ public class PrismarineArrowEntity extends ModdedPersistentProjectileEntity {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+
+        boolean ownerSubmerged = this.getOwner() == null || this.getOwner().isSubmergedInWater();
+
+        if (ownerSubmerged && this.isSubmergedInWater()) {
+            super.setDamage(4);
+        } else {
+            super.setDamage(0.5);
+        }
+    }
+
+    @Override
     protected float getDragInWater() {
         return 1f;
     }

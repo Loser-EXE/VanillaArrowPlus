@@ -56,11 +56,10 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
         return true;
     }
 
-    // Code will remain dormant until the values are ironed out.
+    // Code will remain dormant until the values are ironed out. Probably should get the defualt amount with enchangenmtns and shi
 //    @Redirect(method = "getPullTime", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;getCrossbowChargeTime(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;F)F"))
 //    private static float getCrossbowChargeTime(ItemStack stack, LivingEntity user, float baseCrossbowChargeTime) {
 //        ItemStack projectileStack = user.getProjectileType(stack);
-//        System.out.println(projectileStack);
 //        return 1;
 //    }
 }

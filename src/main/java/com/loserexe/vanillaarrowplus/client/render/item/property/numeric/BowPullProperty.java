@@ -1,5 +1,6 @@
 package com.loserexe.vanillaarrowplus.client.render.item.property.numeric;
 
+import com.loserexe.vanillaarrowplus.item.ModdedArrowItem;
 import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,6 +26,15 @@ public class BowPullProperty implements NumericProperty {
             return 0.0F;
         }  else {
             int usedTicks = UseDurationProperty.getTicksUsedSoFar(stack, holder);
+
+            ItemStack bowStack = holder.getStackInHand(holder.getActiveHand());
+            ItemStack arrowStack = holder.getProjectileType(bowStack);
+
+            if (arrowStack.getItem() instanceof ModdedArrowItem arrowItem) {
+                float pullProgressMultiplier = arrowItem.getPullProgressMultiplier(holder);
+                return BowItem.getPullProgress((int) Math.floor(usedTicks * pullProgressMultiplier));
+            }
+
             return BowItem.getPullProgress(usedTicks);
         }
     }

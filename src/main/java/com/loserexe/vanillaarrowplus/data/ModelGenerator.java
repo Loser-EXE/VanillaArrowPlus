@@ -35,6 +35,7 @@ public class ModelGenerator extends FabricModelProvider {
 
     }
 
+    // Uhh I hope I never have to go through this again
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.AERIAL_ARROW, Models.GENERATED);

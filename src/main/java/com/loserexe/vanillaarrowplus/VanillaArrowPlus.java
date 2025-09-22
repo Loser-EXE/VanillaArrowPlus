@@ -8,7 +8,6 @@ import com.loserexe.vanillaarrowplus.item.ModItems;
 import com.loserexe.vanillaarrowplus.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
