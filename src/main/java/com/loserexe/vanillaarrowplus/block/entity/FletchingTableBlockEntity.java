@@ -14,6 +14,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -70,20 +72,34 @@ public class FletchingTableBlockEntity extends LockableContainerBlockEntity {
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        super.readNbt(nbt, registries);
-        Inventories.readNbt(nbt, this.inventory, registries);
-        if (nbt.contains("tippingMaterial")) {
-            this.tippingMaterial = FletchingTableTippingMaterial.CODEC.parse(NbtOps.INSTANCE, nbt.get("tippingMaterial")).getOrThrow();
-        }
+    protected void readData(ReadView view) {
+        super.readData(view);
+        Inventories.readData(view, this.inventory);
+        view.read("tippingMaterial", FletchingTableTippingMaterial.CODEC).ifPresent((matieral -> this.tippingMaterial = matieral));
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        super.writeNbt(nbt, registries);
-        Inventories.writeNbt(nbt, this.inventory, registries);
-        nbt.put("tippingMaterial", FletchingTableTippingMaterial.CODEC.encodeStart(NbtOps.INSTANCE, tippingMaterial).getOrThrow());
+    protected void writeData(WriteView view) {
+        super.writeData(view);
+        Inventories.writeData(view, this.inventory);
+        view.put("tippingMaterial", FletchingTableTippingMaterial.CODEC, this.tippingMaterial);
     }
+
+//    @Override
+//    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
+//        super.readNbt(nbt, registries);
+//        Inventories.readNbt(nbt, this.inventory, registries);
+//        if (nbt.contains("tippingMaterial")) {
+//            this.tippingMaterial = FletchingTableTippingMaterial.CODEC.parse(NbtOps.INSTANCE, nbt.get("tippingMaterial")).getOrThrow();
+//        }
+//    }
+
+//    @Override
+//    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
+//        super.writeNbt(nbt, registries);
+//        Inventories.writeNbt(nbt, this.inventory, registries);
+//        nbt.put("tippingMaterial", FletchingTableTippingMaterial.CODEC.encodeStart(NbtOps.INSTANCE, tippingMaterial).getOrThrow());
+//    }
 
     public FletchingTableTippingMaterial getTippingMaterial() {
         return this.tippingMaterial;
@@ -104,6 +120,8 @@ public class FletchingTableBlockEntity extends LockableContainerBlockEntity {
         this.inventory = inventory;
     }
 
+
+    //ToDo: Is this important??? IDK setPreviousTrackedSlot?? Maybe fixed??
     @Override
     public ItemStack removeStack(int slot, int amount) {
         if (slot == FletchingTableScreenHandler.RESULT_SLOT_INDEX) {
@@ -112,7 +130,7 @@ public class FletchingTableBlockEntity extends LockableContainerBlockEntity {
         ItemStack stack = super.removeStack(slot, amount);
         if (this.screenHandler != null) {
             this.screenHandler.onContentChanged(this);
-            this.screenHandler.setPreviousTrackedSlot(slot, stack);
+            //this.screenHandler.setPreviousTrackedSlot(slot, stack);
         }
         return stack;
     }
@@ -122,7 +140,7 @@ public class FletchingTableBlockEntity extends LockableContainerBlockEntity {
         super.setStack(slot, stack);
         if (this.screenHandler != null) {
             this.screenHandler.onContentChanged(this);
-            this.screenHandler.setPreviousTrackedSlot(slot, stack);
+            //this.screenHandler.setPreviousTrackedSlot(slot, stack);
         }
     }
 

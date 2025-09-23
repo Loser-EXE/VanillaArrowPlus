@@ -376,6 +376,10 @@ public class FletchingTableScreenHandler extends ScreenHandler {
             for (int x = 0; x < 7; x++) {
                 if (x == FletchingTableScreenHandler.RESULT_SLOT_INDEX || x == FletchingTableScreenHandler.TIPPING_MATERIAL_SLOT_INDEX) continue;
                 inventory.getStack(x).decrement(1);
+                FletchingTableRecipeRegistry.CraftingMethod method = FletchingTableRecipeRegistry.getCraftingMethod(this.inventory);
+                if (method == FletchingTableRecipeRegistry.CraftingMethod.NONE) {
+                    this.setStack(ItemStack.EMPTY);
+                }
             }
             FletchingTableRecipeRegistry.CraftingMethod craftingMethod = getCraftingMethod();
             if (craftingMethod == FletchingTableRecipeRegistry.CraftingMethod.TIPPING) {

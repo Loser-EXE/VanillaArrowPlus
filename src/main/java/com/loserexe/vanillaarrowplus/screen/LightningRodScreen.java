@@ -1,6 +1,7 @@
 package com.loserexe.vanillaarrowplus.screen;
 
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.RenderLayer;
@@ -25,7 +26,7 @@ public class LightningRodScreen extends HandledScreen<LightningRodScreenHandler>
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         int localX = (this.width - this.backgroundWidth) / 2;
         int localY = (this.height - this.backgroundHeight) / 2;
-        context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, localX, localY, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, 256, 256);
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, localX, localY, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, 256, 256);
     }
 
     @Override

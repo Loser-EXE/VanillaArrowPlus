@@ -11,6 +11,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -51,13 +52,13 @@ public class ModdedFletchingTable extends BlockWithEntity {
     }
 
     @Override
-    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.isOf(newState.getBlock())) {
+    protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved) {
+        if (!state.isOf(world.getBlockState(pos).getBlock())) {
             FletchingTableBlockEntity fletchingTableBlockEntity = world.getBlockEntity(pos, ModBlockEntityTypes.FLETCHING_TABLE).orElseThrow();
             fletchingTableBlockEntity.setStack(FletchingTableScreenHandler.RESULT_SLOT_INDEX, ItemStack.EMPTY);
             fletchingTableBlockEntity.setStack(FletchingTableScreenHandler.TIPPING_MATERIAL_SLOT_INDEX, ItemStack.EMPTY);
-            ItemScatterer.onStateReplaced(state, newState, world, pos);
+            ItemScatterer.onStateReplaced(state, world, pos);
         }
-        super.onStateReplaced(state, world, pos, newState, moved);
+        super.onStateReplaced(state, world, pos, moved);
     }
 }

@@ -71,7 +71,7 @@ public class RedstoneArrowEntity extends ModdedPersistentProjectileEntity {
         super.tick();
 
         if(this.inGroundTime % 10 == 0) {
-            this.getWorld().addParticle(new DustParticleEffect(DustParticleEffect.RED, 1), this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+            this.getWorld().addParticleClient(new DustParticleEffect(DustParticleEffect.RED, 1), this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
         }
     }
 }

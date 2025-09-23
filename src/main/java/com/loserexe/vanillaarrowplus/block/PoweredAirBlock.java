@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -39,12 +40,12 @@ public class PoweredAirBlock extends Block {
     }
 
     @Override
-    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        super.onStateReplaced(state, world, pos, newState, moved);
+    protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved) {
+        super.onStateReplaced(state, world, pos, moved);
 
-        world.updateNeighborsAlways(pos, this);
+        world.updateNeighborsAlways(pos, this, null);
         BlockPos facingBlockPos = pos.offset(state.get(FACING).getOpposite());
-        world.updateNeighborsAlways(facingBlockPos, world.getBlockState(facingBlockPos).getBlock());
+        world.updateNeighborsAlways(facingBlockPos, world.getBlockState(facingBlockPos).getBlock(), null);
     }
 
     @Override

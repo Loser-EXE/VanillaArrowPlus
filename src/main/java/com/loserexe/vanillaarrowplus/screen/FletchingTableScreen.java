@@ -2,6 +2,7 @@ package com.loserexe.vanillaarrowplus.screen;
 
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
 import com.loserexe.vanillaarrowplus.recpie.FletchingTableRecipeRegistry;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.RenderLayer;
@@ -31,7 +32,7 @@ public class FletchingTableScreen extends HandledScreen<FletchingTableScreenHand
     }
 
     private void drawX(DrawContext context, int x, int y) {
-        context.drawTexture(RenderLayer::getGuiTextured, X_TEXTURE, x, y, 0f, 0f, 15, 15, 15,15);
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, X_TEXTURE, x, y, 0f, 0f, 15, 15, 15,15);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class FletchingTableScreen extends HandledScreen<FletchingTableScreenHand
         handler.updateSlotsState();
         if (slot instanceof FletchingTableScreenHandler.TippingMaterialSlot tippingMaterialSlot) {
             if (tippingMaterialSlot.hasStack()) {
-                context.drawGuiTexture(RenderLayer::getGuiTextured, DISABLED_SLOT_TEXTURE, slot.x - 1, slot.y - 1, 18, 18);
+                context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, DISABLED_SLOT_TEXTURE, slot.x - 1, slot.y - 1, 18, 18);
                 context.drawItem(slot.getStack(), slot.x, slot.y);
                 return;
             }
@@ -52,11 +53,11 @@ public class FletchingTableScreen extends HandledScreen<FletchingTableScreenHand
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         int localX = (this.width - this.backgroundWidth) / 2;
         int localY = (this.height - this.backgroundHeight) / 2;
-        context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, localX, localY, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, 256, 256);
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, localX, localY, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, 256, 256);
         int tippingMaterialFill = handler.getTippingFillAmount();
         if (tippingMaterialFill > 0) {
             int offset = (int) Math.ceil((tippingMaterialFill/32F) * 16);
-            context.drawTexture(RenderLayer::getGuiTextured, TIPPING_FILL_AMOUNT_BAR_TEXTURE, localX + 166, (localY + 15) - (offset - 16), 0, offset, 2, offset, 2, 16);
+            context.drawTexture(RenderPipelines.GUI_TEXTURED, TIPPING_FILL_AMOUNT_BAR_TEXTURE, localX + 166, (localY + 15) - (offset - 16), 0, offset, 2, offset, 2, 16);
         }
         FletchingTableRecipeRegistry.CraftingMethod craftingMethod = handler.getAttemptedCraftingMethod();
         if (craftingMethod == FletchingTableRecipeRegistry.CraftingMethod.TIPPING) {

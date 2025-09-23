@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/bow",
-  "textures": {
-    "layer0": "vanillaarrowplus:item/bow_copper_arrow_pulling_0"
-  }
-}

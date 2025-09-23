@@ -25,7 +25,7 @@ public class RangedWeaponProjectileTypeProperty implements SelectProperty<Ranged
     public RangedWeaponProjectileTypeProperty() {}
 
     @Override
-    public @Nullable ProjectileType getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ModelTransformationMode modelTransformationMode) {
+    public @Nullable ProjectileType getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
         ChargedProjectilesComponent chargedProjectilesComponent = stack.get(DataComponentTypes.CHARGED_PROJECTILES);
         if (chargedProjectilesComponent == null || chargedProjectilesComponent.isEmpty()) return ProjectileType.NONE;
         String itemName = Registries.ITEM.getId(chargedProjectilesComponent.getProjectiles().getFirst().getItem()).getPath(); // Assumes they are all the same
@@ -34,7 +34,11 @@ public class RangedWeaponProjectileTypeProperty implements SelectProperty<Ranged
         } catch (Exception e) {
             return ProjectileType.ARROW;
         }
+    }
 
+    @Override
+    public Codec<ProjectileType> valueCodec() {
+        return ProjectileType.CODEC;
     }
 
     @Override

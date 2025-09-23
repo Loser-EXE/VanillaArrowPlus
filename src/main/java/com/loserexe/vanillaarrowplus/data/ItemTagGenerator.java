@@ -19,11 +19,11 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider{
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         for (Item item : ModItems.normal_arrows) {
-            getOrCreateTagBuilder(ItemTags.ARROWS).add(item);
+            valueLookupBuilder(ItemTags.ARROWS).add(item);
         }
 
         for (Item item : ModItems.crossbow_arrows) {
-            getOrCreateTagBuilder(VanillaArrowPlus.CROSSBOW_ARROWS).add(item);
+            valueLookupBuilder(VanillaArrowPlus.CROSSBOW_ARROWS).add(item);
         }
 //        getOrCreateTagBuilder(ItemTags.ARROWS)
 //                .add(ModItems.AERIAL_ARROW)
