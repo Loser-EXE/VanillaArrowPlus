@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BowItem.class)
 public class BowItemMixin {
     @Unique
-    private float pullProgressMultiplier;
+    private float pullProgressMultiplier = 1.0f;
 
     @Inject(method = "onStoppedUsing", at = @At("HEAD"))
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks, CallbackInfoReturnable<Boolean> cir) {
