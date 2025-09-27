@@ -53,6 +53,4 @@ public class BlazingArrowEntity extends ModdedPersistentProjectileEntity {
             entityHitResult.getEntity().setOnFireForTicks(100);
         }
     }
-
-
 }
