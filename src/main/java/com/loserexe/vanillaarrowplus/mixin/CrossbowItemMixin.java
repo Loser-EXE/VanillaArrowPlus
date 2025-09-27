@@ -1,6 +1,8 @@
 package com.loserexe.vanillaarrowplus.mixin;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
+import com.loserexe.vanillaarrowplus.item.ModdedArrowItem;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ChargedProjectilesComponent;
 import net.minecraft.entity.LivingEntity;
@@ -16,6 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -56,10 +59,12 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
         return true;
     }
 
-    // Code will remain dormant until the values are ironed out. Probably should get the defualt amount with enchangenmtns and shi
-//    @Redirect(method = "getPullTime", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;getCrossbowChargeTime(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;F)F"))
-//    private static float getCrossbowChargeTime(ItemStack stack, LivingEntity user, float baseCrossbowChargeTime) {
-//        ItemStack projectileStack = user.getProjectileType(stack);
-//        return 1;
-//    }
+    @ModifyArg(method = "getPullTime", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;getCrossbowChargeTime(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;F)F"), index = 2)
+    private static float baseCrossbowChargeTimeInjector(float baseCrossbowChargeTime, @Local(argsOnly = true) LivingEntity user, @Local(argsOnly = true) ItemStack crossbow) {
+        ItemStack projectileType = user.getProjectileType(crossbow);
+        if (projectileType.getItem() instanceof ModdedArrowItem moddedArrowItem) {
+            return baseCrossbowChargeTime * moddedArrowItem.getPullProgressMultiplier(user);
+        }
+        return baseCrossbowChargeTime;
+    }
 }
