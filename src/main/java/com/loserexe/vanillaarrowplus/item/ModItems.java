@@ -45,40 +45,17 @@ public class ModItems {
     private static Item registerArrow(String name, Function<Item.Settings, Item> builder, boolean crossbowExclusive) {
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VanillaArrowPlus.MOD_ID, name));
         Item item = Items.register(key, builder);
-        DispenserBlock.registerProjectileBehavior(item);
+
         arrows.add(item);
         if (crossbowExclusive) {
             crossbow_arrows.add(item);
         } else {
+            DispenserBlock.registerProjectileBehavior(item);
             normal_arrows.add(item);
         }
+
         return item;
     }
-
-//    private static Item register(String name, Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType, float chargeTimeMultipler) {
-//        return  register(name, entityClass, entityType, chargeTimeMultipler, false);
-//    }
-
-//    private static Item register(String name, Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType, float chargeTimeMultiplier, boolean crossbowExclusive) {
-//        Item.Settings settings = new Item.Settings();
-//        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VanillaArrowPlus.MOD_ID, name));
-//        settings.registryKey(key);
-//        ItemBuilder builder = ModdedArrowItem::new;
-//        Item item = builder.create(entityClass, entityType, settings);
-//        Item registeredItem = Registry.register(Registries.ITEM, key, item);
-//        DispenserBlock.registerProjectileBehavior(item);
-//        arrows.add(registeredItem);
-//        if (crossbowExclusive) {
-//            crossbow_arrows.add(registeredItem);
-//        } else {
-//            normal_arrows.add(registeredItem);
-//        }
-//        return registeredItem;
-//    }
-
-//    private interface ItemBuilder {
-//        ModdedArrowItem create(Class<? extends ModdedPersistentProjectileEntity> entityClass, EntityType<? extends ModdedPersistentProjectileEntity> entityType, Item.Settings settings);
-//    }
 
     public static void register() {
         VanillaArrowPlus.LOGGER.info("Registering Items!");
