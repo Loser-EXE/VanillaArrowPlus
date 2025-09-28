@@ -31,7 +31,7 @@ public class BowPullProperty implements NumericProperty {
             ItemStack arrowStack = holder.getProjectileType(bowStack);
 
             if (arrowStack.getItem() instanceof ModdedArrowItem arrowItem) {
-                float pullProgressMultiplier = arrowItem.getPullProgressMultiplier(holder);
+                float pullProgressMultiplier = arrowItem.getBowPullProgressMultiplier(holder);
                 return BowItem.getPullProgress((int) Math.floor(usedTicks * pullProgressMultiplier));
             }
 

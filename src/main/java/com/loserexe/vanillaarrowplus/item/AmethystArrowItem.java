@@ -11,7 +11,7 @@ public class AmethystArrowItem extends ModdedArrowItem {
     }
 
     @Override
-    public float getPullProgressMultiplier(LivingEntity player) {
+    public float getBowPullProgressMultiplier(LivingEntity player) {
         return 1.75f;
     }
 }

@@ -11,7 +11,12 @@ public class BlazingArrowItem extends ModdedArrowItem {
     }
 
     @Override
-    public float getPullProgressMultiplier(LivingEntity player) {
-        return 1.2f;
+    public float getCrossbowPullProgressMultiplier(LivingEntity player) {
+        return 1.5f;
+    }
+
+    @Override
+    public float getSpeedMultiplier() {
+        return 0.12f;
     }
 }

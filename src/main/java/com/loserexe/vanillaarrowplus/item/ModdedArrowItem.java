@@ -49,7 +49,15 @@ public class ModdedArrowItem extends ArrowItem {
         }
     }
 
-    public float getPullProgressMultiplier(LivingEntity player) {
+    public float getBowPullProgressMultiplier(LivingEntity player) {
+        return 1f;
+    }
+
+    public float getCrossbowPullProgressMultiplier(LivingEntity player) {
+        return 1f;
+    }
+
+    public float getSpeedMultiplier() {
         return 1;
     }
 }

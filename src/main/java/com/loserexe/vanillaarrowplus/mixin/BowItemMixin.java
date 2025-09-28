@@ -34,7 +34,7 @@ public class BowItemMixin {
         ItemStack projectileType = user.getProjectileType(stack);
         if (!stack.isEmpty()) stack.set(DataComponentTypes.CHARGED_PROJECTILES, ChargedProjectilesComponent.of(projectileType));
         if (projectileType.getItem() instanceof ModdedArrowItem arrow) {
-            this.pullProgressMultiplier = arrow.getPullProgressMultiplier(user);
+            this.pullProgressMultiplier = arrow.getBowPullProgressMultiplier(user);
         }
     }
 

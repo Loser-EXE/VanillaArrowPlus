@@ -11,7 +11,7 @@ public class PrismarineArrowItem extends ModdedArrowItem {
     }
 
     @Override
-    public float getPullProgressMultiplier(LivingEntity entity) {
+    public float getBowPullProgressMultiplier(LivingEntity entity) {
         if (entity.isSubmergedInWater()) {
             return 1.25f;
         } else {

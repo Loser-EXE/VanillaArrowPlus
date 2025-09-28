@@ -63,7 +63,7 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
     private static float baseCrossbowChargeTimeInjector(float baseCrossbowChargeTime, @Local(argsOnly = true) LivingEntity user, @Local(argsOnly = true) ItemStack crossbow) {
         ItemStack projectileType = user.getProjectileType(crossbow);
         if (projectileType.getItem() instanceof ModdedArrowItem moddedArrowItem) {
-            return baseCrossbowChargeTime * moddedArrowItem.getPullProgressMultiplier(user);
+            return baseCrossbowChargeTime * moddedArrowItem.getCrossbowPullProgressMultiplier(user);
         }
         return baseCrossbowChargeTime;
     }
