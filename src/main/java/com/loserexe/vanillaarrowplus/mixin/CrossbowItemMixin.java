@@ -2,6 +2,7 @@ package com.loserexe.vanillaarrowplus.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.loserexe.vanillaarrowplus.VanillaArrowPlus;
+import com.loserexe.vanillaarrowplus.item.BlazingArrowItem;
 import com.loserexe.vanillaarrowplus.item.ModdedArrowItem;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ChargedProjectilesComponent;
@@ -11,15 +12,15 @@ import net.minecraft.inventory.StackReference;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.RangedWeaponItem;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ClickType;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Predicate;
@@ -66,5 +67,29 @@ public abstract class CrossbowItemMixin extends RangedWeaponItem {
             return baseCrossbowChargeTime * moddedArrowItem.getCrossbowPullProgressMultiplier(user);
         }
         return baseCrossbowChargeTime;
+    }
+
+    @Override
+    public void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        super.postHit(stack, target, attacker);
+        World world = attacker.getWorld();
+        if (world.isClient) return;
+        ChargedProjectilesComponent chargedProjectilesComponent = stack.get(DataComponentTypes.CHARGED_PROJECTILES);
+        if (chargedProjectilesComponent == null) return;
+        ItemStack projectile = chargedProjectilesComponent.getProjectiles().getLast();
+        if (projectile.getItem() instanceof BlazingArrowItem) {
+            Vec3d direction = attacker.getPos().subtract(target.getPos()).normalize();
+
+            attacker.setVelocity(attacker.getVelocity().add(direction.multiply(1.2)));
+            target.setVelocity(target.getVelocity().add(direction.multiply(1.2)).negate());
+
+            // For some reason the players velocity won't update unless this is set to true. Spent HOURS on this set the target to true as well for consistency i guess.
+            attacker.velocityModified = true;
+            target.velocityModified = true;
+
+            stack.set(DataComponentTypes.CHARGED_PROJECTILES, ChargedProjectilesComponent.DEFAULT);
+            stack.damage(5, attacker, attacker.getActiveHand());
+            world.createExplosion(attacker, target.getX(), target.getY(), target.getZ(), 1.5f, true, World.ExplosionSourceType.MOB);
+        }
     }
 }
